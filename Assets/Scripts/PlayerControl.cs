@@ -32,16 +32,17 @@ public class PlayerControl : MonoBehaviour
 
         //Grawitacja
         isOnGround = Physics.CheckSphere(groundCheck.position, graundDistance, groundMask);
-        velocity.y += gravity * Time.deltaTime; 
+        velocity.y += gravity * Time.deltaTime;
         player.Move(velocity * Time.deltaTime);
 
         if (isOnGround)
             velocity.y = -1.0f;
 
         //Skok
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround) {
+        if (Input.GetKey(KeyCode.Space) && isOnGround)
+        {
             isOnGround = false;
-            transform.Translate(new Vector3(0, graundDistance+1f, 0));
+            transform.Translate(new Vector3(0, graundDistance + 1f, 0));
             velocity.y = Mathf.Sqrt(jumpPower * -2f * gravity);
         }
 
