@@ -6,11 +6,11 @@ public class CameraControl : MonoBehaviour
 {
     public float mouseSpeed = 200.0f;
     float xRotaion = 0.0f;
-    public Transform playerBody;
+    public Transform player;
     // Start is called before the first frame update
     void Start()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -22,8 +22,7 @@ public class CameraControl : MonoBehaviour
         xRotaion -= mouseY;
         xRotaion = Mathf.Clamp(xRotaion, -90.0f, 90.0f);
         transform.localRotation = Quaternion.Euler(xRotaion, 0.0f, 0.0f);
-        playerBody.Rotate(Vector3.up * mouseX);
-
+        player.Rotate(Vector3.up * mouseX);
 
     }
 }

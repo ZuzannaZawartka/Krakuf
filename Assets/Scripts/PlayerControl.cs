@@ -36,12 +36,10 @@ public class PlayerControl : MonoBehaviour
         player.Move(velocity * Time.deltaTime);
 
         if (isOnGround)
-            velocity.y = -1.0f;
+            velocity.y = 0.0f;
 
         //Skok
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround) {
-            isOnGround = false;
-            transform.Translate(new Vector3(0, graundDistance+1f, 0));
+        if (Input.GetKey(KeyCode.Space) && isOnGround) {
             velocity.y = Mathf.Sqrt(jumpPower * -2f * gravity);
         }
 
