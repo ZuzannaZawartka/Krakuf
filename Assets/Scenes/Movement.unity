@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSpeed: 200
-  playerBody: {fileID: 1937804353}
+  player: {fileID: 1937804353}
 --- !u!114 &556022315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,14 +1243,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  jumpPower: 5
+  jumpPower: 3
   player: {fileID: 1937804356}
-  groundCheck: {fileID: 1351066880}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  graundDistance: 0.2
-  gravity: -12
+  gravity: -40
 --- !u!143 &1937804356
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1265,7 +1260,7 @@ CharacterController:
   m_Height: 1
   m_Radius: 0.5
   m_SlopeLimit: 1
-  m_StepOffset: 2
+  m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
