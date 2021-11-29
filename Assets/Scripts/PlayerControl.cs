@@ -7,17 +7,13 @@ public class PlayerControl : MonoBehaviour
     public float speed = 10.0f;
     public float jumpPower = 30.0f;
     public CharacterController player;
-    public Transform groundCheck;
-    public LayerMask groundMask;
-    public float graundDistance = 0.2f;
     public float gravity = -10;
-    private bool isOnGround;
     private bool sprint = false;
     Vector3 velocity;
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -31,20 +27,22 @@ public class PlayerControl : MonoBehaviour
         player.Move(move * speed * Time.deltaTime);
 
         //Grawitacja
-        isOnGround = Physics.CheckSphere(groundCheck.position, graundDistance, groundMask);
-        velocity.y += gravity * Time.deltaTime; 
-        player.Move(velocity * Time.deltaTime);
+        if (player.isGrounded == false)
+        {
+            velocity.y += gravity * Time.deltaTime;
+            player.Move(velocity * Time.deltaTime);
+        }
 
-        if (isOnGround)
-            velocity.y = 0.0f;
+        if(player.isGrounded)
+            velocity.y = -1.0f;
 
         //Skok
-        if (Input.GetKey(KeyCode.Space) && isOnGround) {
+        if (Input.GetKey(KeyCode.Space) && player.isGrounded) {
             velocity.y = Mathf.Sqrt(jumpPower * -2f * gravity);
         }
 
         //Sprint
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isOnGround)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && player.isGrounded)
         {
             speed *= 2;
             sprint = true;
