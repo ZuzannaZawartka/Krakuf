@@ -13,8 +13,8 @@ public class Gun : MonoBehaviour
 
 
     public Camera fpsCamera;
-    public ParticleSystem muzzleShot;
-    public GameObject impactEffect;
+    //public ParticleSystem muzzleShot;
+    //public GameObject impactEffect;
 
     // Update is called once per frame
     private float nextTime = 0f;
@@ -30,7 +30,7 @@ public class Gun : MonoBehaviour
 
             animator.SetTrigger("Shoot1");
             nextTime = Time.time + 4f / fireRate;
-            muzzleShot.Play();
+            //muzzleShot.Play();
             Shoot();
 
         }
@@ -55,8 +55,8 @@ public class Gun : MonoBehaviour
             }
         }
 
-        GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-        Destroy(impact, 2);
+        //GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+        //Destroy(impact, 2);
 
     }
 
