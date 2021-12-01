@@ -7,13 +7,15 @@ public class PlayerControl : MonoBehaviour
     public float speed = 10.0f;
     public float jumpPower = 30.0f;
     public CharacterController player;
+    public PlayerStats playerStats;
     public float gravity = -10;
-    private bool sprint = false;
+    public bool sprint = false;
     Vector3 velocity;
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<CharacterController>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -42,11 +44,12 @@ public class PlayerControl : MonoBehaviour
         }
 
         //Sprint
-        if (Input.GetKeyDown(KeyCode.LeftShift) && player.isGrounded)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && player.isGrounded && playerStats.currStamina >20)
         {
             speed *= 2;
             sprint = true;
         }
+
         if (Input.GetKeyUp(KeyCode.LeftShift) && sprint)
         {
             speed /= 2;
