@@ -30,7 +30,7 @@ public class GrenadeThrow : MonoBehaviour
         GameObject grenade = Instantiate(grenadePrefabs, transform.position, transform.rotation);
         // GameObject gun = Instantiate(gunPrefab, new Vector3(fpsCamera.transform.position.x, fpsCamera.transform.position.y, fpsCamera.transform.position.z), fpsCamera.transform.rotation);
         Rigidbody rb = grenade.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
+        rb.AddForce(transform.right * throwForce, ForceMode.VelocityChange);
 
 
     }
