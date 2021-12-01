@@ -9,33 +9,21 @@ public class NavMeshController : MonoBehaviour
     public NavMeshAgent agent;
     public float jumpForce = 1000.0f;
     private Rigidbody npcRb;
-
+    private Transform waypointy;
 
     void Start()
     {
-        npcRb = npc.GetComponent<Rigidbody>();    
+        npcRb = npc.GetComponent<Rigidbody>();
+        waypointy = GameObject.FindGameObjectWithTag("Waypointy").transform;
+        agent.SetDestination(waypointy.GetChild(0).transform.position);
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+    { 
+        if(agent.remainingDistance < 1)
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                agent.SetDestination(hit.point);
-            }
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Obiekty"))
-        {
-            npcRb.AddForce(Vector3.up * jumpForce);
-        }
+            agent.SetDestination(waypointy.GetChild(Random.Range(0, waypointy.childCount)).transform.position);
+        }   
     }
 }
