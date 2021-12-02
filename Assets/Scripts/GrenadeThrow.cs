@@ -19,11 +19,11 @@ public class GrenadeThrow : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time >= nextTime && playerStats.currMana>=20)
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextTime && playerStats.currMana>=40)
         {
             nextTime = Time.time + 4f / fireRate;
             ThrowGrenade();
-            playerStats.UseMagic(20f);
+            playerStats.UseMagic(40f);
         }
     }
     // Update is called once per frame

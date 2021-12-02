@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public string playerClass;
+
     public float maxHP;
     public float currHP;
     public bool isDead;
+
+    public int level;
+    public float maxExp;
+    public float currExp;
 
     public float maxStamina;
     public float currStamina;
@@ -14,10 +20,46 @@ public class PlayerStats : MonoBehaviour
     public float maxMana;
     public float currMana;
 
+    public int str;
+    public int intel;
+    public int dex;
+    public int strPerLv;
+    public int intelPerLv;
+    public int dexPerLv;
+
     public PlayerControl playerControl;
     private void Start()
     {
         playerControl = GetComponent<PlayerControl>();
+
+        playerClass = "mage";
+
+        str = 10;
+        intel = 10;
+        dex = 10;
+        strPerLv = 1;
+        intelPerLv = 1;
+        dexPerLv = 1;
+
+        if (playerClass == "mage")
+        {
+            intel = 15;
+            intelPerLv = 3;
+        }
+        else if (playerClass == "fighter")
+        {
+            str = 15;
+            strPerLv = 3;
+        }
+        else 
+        {
+            dex = 15;
+            dexPerLv = 3;
+        }
+
+        level = 1;
+        maxExp = 200;
+        currExp = 0;
 
         maxHP = 100;
         currHP = maxHP;
@@ -37,6 +79,11 @@ public class PlayerStats : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
         {
             Heal(10);
+        }
+
+        if (Input.GetKeyDown(KeyCode.G)) 
+        {
+            GetExp(60);
         }
 
         if (playerControl.sprint) 
@@ -114,5 +161,23 @@ public class PlayerStats : MonoBehaviour
     {
         currMana -= manaCost;
         CheckMana();
+    }
+    public void GetExp(float exp) 
+    {
+        currExp += exp;
+        CheckExp();
+    }
+    public void CheckExp()
+    {
+        if (currExp >= maxExp)
+        {
+            level += 1;
+            currExp -= maxExp;
+            maxExp = 300 * level;
+            str += strPerLv;
+            intel += intelPerLv;
+            dex += dexPerLv;
+            CheckExp();
+        }
     }
 }

@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 206540837}
   - component: {fileID: 206540836}
   - component: {fileID: 206540835}
+  - component: {fileID: 206540841}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -347,7 +348,9 @@ MonoBehaviour:
   speed: 7
   jumpPower: 3
   player: {fileID: 206540836}
+  playerStats: {fileID: 0}
   gravity: -40
+  sprint: 0
 --- !u!143 &206540836
 CharacterController:
   m_ObjectHideFlags: 0
@@ -444,6 +447,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &206540841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206540834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e6bd0134e83de4c89d10b72e37607e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 0
+  currHP: 0
+  isDead: 0
+  maxStamina: 0
+  currStamina: 0
+  maxMana: 0
+  currMana: 0
+  playerControl: {fileID: 206540835}
 --- !u!1 &210953029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,6 +1983,8 @@ MonoBehaviour:
   throwForce: 20
   grenadePrefabs: {fileID: 4379412334719526645, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
   fireRate: 15
+  playerStats: {fileID: 0}
+  player: {fileID: 206540834}
 --- !u!1 &1946756948
 GameObject:
   m_ObjectHideFlags: 0
