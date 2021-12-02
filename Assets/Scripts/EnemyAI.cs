@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody npcRb;
     private Transform waypointy;
     private GameObject[] enemys;
-    
+    private bool haveT = false;
     private AIShooting aishoot;
    
     
@@ -35,12 +35,8 @@ public class EnemyAI : MonoBehaviour
       
        FindTarget();
         // FIXME strzela przy punktach waypoint
-        if (agent.remainingDistance < rangeToShoot)
-        {
-            aishoot.Shoot();
-        }
 
-
+       
 
     }
 
@@ -64,8 +60,8 @@ public class EnemyAI : MonoBehaviour
     }*/
     void FindTarget()
     {
-        bool haveT = false;
 
+        haveT = false;
         enemys = GameObject.FindGameObjectsWithTag("Enemy");
  
      
@@ -79,9 +75,15 @@ public class EnemyAI : MonoBehaviour
 
                 if (npc.name != currentEnemy.name)
                 {
-                    agent.SetDestination(currentEnemy.transform.position);
+                    agent.SetDestination( new Vector3(currentEnemy.transform.position.x -2, currentEnemy.transform.position.y, currentEnemy.transform.position.z -2));
                     haveT = true;
-                   
+                    if(agent.remainingDistance < rangeToShoot)
+                    {
+                        aishoot.Shoot();
+                        
+                    }
+                    
+
                 }
                
             }
@@ -93,7 +95,11 @@ public class EnemyAI : MonoBehaviour
         {
             movetoWaypoint();
         }
+        
+            
+            
 
+       
 
     }
     void movetoWaypoint()
