@@ -28,11 +28,13 @@ public class PlayerStats : MonoBehaviour
     public int dexPerLv;
 
     public PlayerControl playerControl;
+    public PlayerHUD hud;
     private void Start()
     {
         playerControl = GetComponent<PlayerControl>();
+        hud = GetComponent<PlayerHUD>();
 
-        playerClass = "mage";
+        playerClass = "Mage";
 
         str = 10;
         intel = 10;
@@ -41,12 +43,12 @@ public class PlayerStats : MonoBehaviour
         intelPerLv = 1;
         dexPerLv = 1;
 
-        if (playerClass == "mage")
+        if (playerClass == "Mage")
         {
             intel = 15;
             intelPerLv = 3;
         }
-        else if (playerClass == "fighter")
+        else if (playerClass == "Fighter")
         {
             str = 15;
             strPerLv = 3;
@@ -70,11 +72,19 @@ public class PlayerStats : MonoBehaviour
 
         maxMana = 100;
         currMana = maxMana;
+
+
+        hud.UpdatePlayerClass(playerClass);
+        CheckExp();
+        CheckHP();
+        CheckStamina();
+        CheckMana();
+
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.T)) {
-            currStamina -= 20;
+            TakeDamage(10);
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
@@ -106,8 +116,9 @@ public class PlayerStats : MonoBehaviour
         if (currMana < maxMana) 
         {
             currMana += 5 * Time.deltaTime;
-            CheckStamina();
+            CheckMana();
         }
+
     }
     public void CheckHP()
     {
@@ -120,6 +131,7 @@ public class PlayerStats : MonoBehaviour
         {
             currHP = maxHP;
         }
+        hud.UpdateHP(currHP, maxHP);
     }
     public void TakeDamage(float damage)
     {
@@ -145,17 +157,17 @@ public class PlayerStats : MonoBehaviour
         {
             currStamina = 0;
         }
-
+        hud.UpdateStamina(currStamina, maxStamina);
     }
     public void CheckMana()
     {
-        if (currStamina > maxStamina)
-            currStamina = maxStamina;
-        if (currStamina <= 0)
+        if (currMana > maxMana)
+            currMana = maxMana;
+        if (currMana <= 0)
         {
-            currStamina = 0;
+            currMana = 0;
         }
-
+        hud.UpdateMana(currMana, maxMana);
     }
     public void UseMagic(float manaCost) 
     {
@@ -169,6 +181,7 @@ public class PlayerStats : MonoBehaviour
     }
     public void CheckExp()
     {
+        hud.UpdateExp(level, currExp, maxExp);
         if (currExp >= maxExp)
         {
             level += 1;
@@ -177,6 +190,9 @@ public class PlayerStats : MonoBehaviour
             str += strPerLv;
             intel += intelPerLv;
             dex += dexPerLv;
+            maxHP += 10;
+            currHP = maxHP;
+            CheckHP();
             CheckExp();
         }
     }
