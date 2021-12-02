@@ -9,15 +9,19 @@ public class EnemyAI : MonoBehaviour
     public GameObject npc;
     public GameObject player;
     public NavMeshAgent agent;
+    public float rangeToShoot = 5f;
     public float targetRange = 10f;
-    public float jumpForce = 1000.0f;
     private Rigidbody npcRb;
     private Transform waypointy;
     private GameObject[] enemys;
-    public float range = 5f;
+    
+    private AIShooting aishoot;
+   
+    
 
     void Start()
     {
+        aishoot = npc.transform.GetChild(0).GetComponent<AIShooting>();
         npcRb = npc.GetComponent<Rigidbody>();
         waypointy = GameObject.FindGameObjectWithTag("Waypointy").transform;
         
@@ -28,12 +32,20 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+      
        FindTarget();
-        Shoot();
-        
+        // FIXME strzela przy punktach waypoint
+        if (agent.remainingDistance < rangeToShoot)
+        {
+            aishoot.Shoot();
+        }
+
+
+
     }
-    void Shoot()
+
+
+ /*   void Shoot()
     {
         RaycastHit hit;
 
@@ -49,7 +61,7 @@ public class EnemyAI : MonoBehaviour
             {
             }
         }
-    }
+    }*/
     void FindTarget()
     {
         bool haveT = false;
@@ -69,9 +81,11 @@ public class EnemyAI : MonoBehaviour
                 {
                     agent.SetDestination(currentEnemy.transform.position);
                     haveT = true;
+                   
                 }
                
             }
+           
            
         }
 
