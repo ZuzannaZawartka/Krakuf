@@ -14,10 +14,18 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody npcRb;
     private Transform waypointy;
     private GameObject[] enemys;
-    private bool haveT = false;
+   private bool haveT = false;
     private AIShooting aishoot;
-   
-    
+
+
+    public bool enemyInSightRange, enemyInAttackRange;
+    public LayerMask whatIsTeam1 , whatIsTeam2 ;
+    private Vector3 walkPoint;
+    private bool walkPointSet = false;
+    private Transform look;
+    public bool isItTeam1;
+    public bool isItTeam2;
+    public bool isItPlayer;
 
     void Start()
     {
@@ -26,26 +34,36 @@ public class EnemyAI : MonoBehaviour
         waypointy = GameObject.FindGameObjectWithTag("Waypointy").transform;
         
         
-        agent.SetDestination(waypointy.GetChild(Random.Range(0, waypointy.childCount)).transform.position);
+       agent.SetDestination(waypointy.GetChild(Random.Range(0, waypointy.childCount)).transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-      
-       FindTarget();
-        // FIXME strzela przy punktach waypoint
-
        
 
+        if (isItTeam1)
+        {
+            FindTarget(true);
+        }
+
+        if (isItTeam2)
+        {
+            FindTarget(false);
+        }
+        
+        // FIXME strzela przy punktach waypoint
+       
+
+       
     }
+   
 
-
- /*   void Shoot()
+    void Shoot()
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(npc.transform.position, npc.transform.forward, out hit, range))
+        if (Physics.Raycast(npc.transform.position, npc.transform.forward, out hit, rangeToShoot))
         {
 
             Target target = hit.transform.GetComponent<Target>();
@@ -57,34 +75,33 @@ public class EnemyAI : MonoBehaviour
             {
             }
         }
-    }*/
-    void FindTarget()
+    }
+    void FindTarget(bool isitT1)
     {
-
+        if (isitT1)
+        {
+            enemys = GameObject.FindGameObjectsWithTag("Team2");
+        }
+        else
+        {
+            enemys = GameObject.FindGameObjectsWithTag("Team1");
+        }
         haveT = false;
-        enemys = GameObject.FindGameObjectsWithTag("Enemy");
- 
      
-
         foreach (GameObject currentEnemy in enemys)
         {
-            float distanceToEnemy = (currentEnemy.transform.position - npc.transform.position).sqrMagnitude;
+            float distanceToEnemy = (currentEnemy.transform.position - npc.transform.position).magnitude;
             
             if ( distanceToEnemy <= targetRange && distanceToEnemy < agent.remainingDistance)
             {
-
-                if (npc.name != currentEnemy.name)
-                {
                     agent.SetDestination( new Vector3(currentEnemy.transform.position.x -2, currentEnemy.transform.position.y, currentEnemy.transform.position.z -2));
                     haveT = true;
                     if(agent.remainingDistance < rangeToShoot)
                     {
+                    transform.position = this.transform.position;
                         aishoot.Shoot();
-                        
+                    transform.LookAt(currentEnemy.transform);
                     }
-                    
-
-                }
                
             }
            
@@ -109,4 +126,7 @@ public class EnemyAI : MonoBehaviour
             agent.SetDestination(waypointy.GetChild(Random.Range(0, waypointy.childCount)).transform.position);
         }
     }
+
+
+
 }

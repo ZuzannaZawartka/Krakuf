@@ -58,6 +58,7 @@ public class AIShooting : MonoBehaviour
             {
                 nextTime = Time.time + 4f / fireRate;
                 Debug.Log("STRZAL");
+      
                 GameObject grenade = Instantiate(grenadePrefabs, transform.position, transform.rotation);
                 
                 Rigidbody rb = grenade.GetComponent<Rigidbody>();

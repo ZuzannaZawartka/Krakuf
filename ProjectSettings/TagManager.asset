@@ -7,15 +7,17 @@ TagManager:
   - Obiekty
   - Waypointy
   - Enemy
+  - Team1
+  - Team2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Team1
   - Water
   - UI
   - Ground
-  - 
+  - Team2
   - 
   - 
   - 
