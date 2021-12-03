@@ -14,48 +14,32 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody npcRb;
     private Transform waypointy;
     private GameObject[] enemys;
-   private bool haveT = false;
+    private bool haveT = false;
     private AIShooting aishoot;
-
-
-    public bool enemyInSightRange, enemyInAttackRange;
+    private bool enemyInSightRange, enemyInAttackRange;
     public LayerMask whatIsTeam1 , whatIsTeam2 ;
-    private Vector3 walkPoint;
-    private bool walkPointSet = false;
-    private Transform look;
     public bool isItTeam1;
-    public bool isItTeam2;
-    public bool isItPlayer;
+
 
     void Start()
     {
         aishoot = npc.transform.GetChild(0).GetComponent<AIShooting>();
         npcRb = npc.GetComponent<Rigidbody>();
         waypointy = GameObject.FindGameObjectWithTag("Waypointy").transform;
-        
-        
-       agent.SetDestination(waypointy.GetChild(Random.Range(0, waypointy.childCount)).transform.position);
+        agent.SetDestination(waypointy.GetChild(Random.Range(0, waypointy.childCount)).transform.position);
     }
 
-    // Update is called once per frame
     void Update()
     {
-       
-
+      
         if (isItTeam1)
         {
             FindTarget(true);
         }
-
-        if (isItTeam2)
-        {
+        else { 
             FindTarget(false);
         }
-        
-        // FIXME strzela przy punktach waypoint
-       
-
-       
+    
     }
    
 
@@ -78,6 +62,7 @@ public class EnemyAI : MonoBehaviour
     }
     void FindTarget(bool isitT1)
     {
+       
         if (isitT1)
         {
             enemys = GameObject.FindGameObjectsWithTag("Team2");
@@ -87,37 +72,33 @@ public class EnemyAI : MonoBehaviour
             enemys = GameObject.FindGameObjectsWithTag("Team1");
         }
         haveT = false;
-     
+        
         foreach (GameObject currentEnemy in enemys)
         {
             float distanceToEnemy = (currentEnemy.transform.position - npc.transform.position).magnitude;
             
-            if ( distanceToEnemy <= targetRange && distanceToEnemy < agent.remainingDistance)
+            if ( distanceToEnemy <= targetRange)
             {
-                    agent.SetDestination( new Vector3(currentEnemy.transform.position.x -2, currentEnemy.transform.position.y, currentEnemy.transform.position.z -2));
+                    agent.SetDestination(currentEnemy.transform.position);
                     haveT = true;
                     if(agent.remainingDistance < rangeToShoot)
                     {
+
                     transform.position = this.transform.position;
-                        aishoot.Shoot();
+                   
+                    aishoot.Shoot();
+
+                   
                     transform.LookAt(currentEnemy.transform);
                     }
-               
-            }
-           
-           
+                
+            }   
         }
 
-        if (!haveT || enemys.Length < 1)
+        if (!haveT || enemys.Length < 1 )
         {
             movetoWaypoint();
         }
-        
-            
-            
-
-       
-
     }
     void movetoWaypoint()
     {
@@ -126,7 +107,4 @@ public class EnemyAI : MonoBehaviour
             agent.SetDestination(waypointy.GetChild(Random.Range(0, waypointy.childCount)).transform.position);
         }
     }
-
-
-
 }

@@ -63,6 +63,7 @@ public class AIShooting : MonoBehaviour
                 
                 Rigidbody rb = grenade.GetComponent<Rigidbody>();
                 rb.AddForce(transform.forward * shootForce, ForceMode.VelocityChange);
+                
             }
         }
 
@@ -70,5 +71,5 @@ public class AIShooting : MonoBehaviour
 
     }
 
-
+   
 }
