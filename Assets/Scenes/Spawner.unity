@@ -218,6 +218,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96394360}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &109992267
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1023178704014236788, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_Name
+      value: EnemyWithBook
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.701598
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.00653
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023178704014236796, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937316476303841653, guid: 994af0cab1269474684869f1d42ea263, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.426
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 994af0cab1269474684869f1d42ea263, type: 3}
 --- !u!1 &118669138
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +481,7 @@ MonoBehaviour:
   - {fileID: 1023178704014236788, guid: 994af0cab1269474684869f1d42ea263, type: 3}
   - {fileID: 349323013298172550, guid: 24091d38a8522784183863d74487778a, type: 3}
   - {fileID: 8799026562783545967, guid: fd427704766e3cc4c9aae4e87b8e8195, type: 3}
+  enemysToSpawn: 5
   timeToNextSpawn: 5
 --- !u!4 &389502612
 Transform:
@@ -433,7 +495,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &474355002
 GameObject:
@@ -580,7 +642,7 @@ Transform:
   - {fileID: 1027114839}
   - {fileID: 1022577915}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526833525
 GameObject:
@@ -611,7 +673,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &526833527
 MonoBehaviour:
@@ -629,6 +691,7 @@ MonoBehaviour:
   - {fileID: 1157821772098745026, guid: f7a9c6be571b35142823d0094ef37f80, type: 3}
   - {fileID: 8519805685877014926, guid: 2ea2d471101964b498e0e9deddcecd89, type: 3}
   - {fileID: 7919325069879169702, guid: 0c221fb3c605dff4c99648f8949248ef, type: 3}
+  enemysToSpawn: 5
   timeToNextSpawn: 5
 --- !u!1 &648321438
 GameObject:
@@ -1007,7 +1070,7 @@ Transform:
   - {fileID: 157028629}
   - {fileID: 648321439}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1469996068
 GameObject:
@@ -1039,7 +1102,7 @@ Transform:
   - {fileID: 1598016939}
   - {fileID: 353285376}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1472016409
 GameObject:

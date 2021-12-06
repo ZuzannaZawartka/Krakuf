@@ -405,10 +405,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 3
+  damage: 10
   exEffect: {fileID: 0}
   force: 700
   vect: 5
-  enemy: {fileID: 1157821772098745026, guid: f7a9c6be571b35142823d0094ef37f80, type: 3}
 --- !u!1 &8416272007918961125
 GameObject:
   m_ObjectHideFlags: 0

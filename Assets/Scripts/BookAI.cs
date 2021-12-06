@@ -22,9 +22,18 @@ public class BookAI : MonoBehaviour
         Target obj = collision.gameObject.GetComponent<Target>();
         if (collision.gameObject.GetComponent<Target>() != null)
         {
-            obj.Damage(20);
+            obj.Damage(damage);
             Debug.Log("KOLIZAJ");
-            Destroy(gameObject);
+            Delete();
         }
+        else
+        {
+            Invoke("Delete", 3.0f);
+        }
+        
+    }
+    void Delete()
+    {
+        Destroy(gameObject);
     }
 }
