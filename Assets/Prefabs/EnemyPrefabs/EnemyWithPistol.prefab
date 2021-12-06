@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &7919325070009376202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551794590574238531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd80af8365b6414c9b2d35320c205fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootForce: 10
+  fireRate: 9
+  toThrow: 0
+  enemy: {fileID: 7919325069879169702}
+  grenadePrefabs: {fileID: 3966473107649526081, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
+  damage: 10
 --- !u!1 &7919325069879169702
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +149,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 10
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -151,12 +169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6027fcdd9695f44aa6efd1296b5eb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   npc: {fileID: 7919325069879169702}
-  player: {fileID: 0}
   agent: {fileID: 7919325069879169697}
-  rangeToShoot: 20
-  targetRange: 20
+  rangeToShoot: 15
+  targetRange: 10
   whatIsTeam1:
     serializedVersion: 2
     m_Bits: 8
@@ -176,26 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a313756573d8441a592cfbd108a064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
---- !u!114 &7919325070009376202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6551794590574238531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fd80af8365b6414c9b2d35320c205fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  rangeToShoot: 5
-  shootForce: 30
-  fireRate: 1
-  toThrow: 0
-  enemy: {fileID: 7919325069879169702}
-  grenadePrefabs: {fileID: 3966473107649526081, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
+  health: 100
 --- !u!1 &7919325070576355664
 GameObject:
   m_ObjectHideFlags: 0
