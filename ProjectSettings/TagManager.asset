@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Obiekty
   - Waypointy
+  - House
+  - Shop
   - Enemy
   - Team1
   - Team2
