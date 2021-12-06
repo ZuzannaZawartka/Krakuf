@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8519805686638479134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6400089436047141044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd80af8365b6414c9b2d35320c205fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootForce: 20
+  fireRate: 7
+  toThrow: 0
+  enemy: {fileID: 8519805685877014926}
+  grenadePrefabs: {fileID: 3381571440357765037, guid: 06fa4959e8a60334f8c23fbed3acece5, type: 3}
+  damage: 30
 --- !u!1 &8519805685877014926
 GameObject:
   m_ObjectHideFlags: 0
@@ -18,7 +36,7 @@ GameObject:
   - component: {fileID: 8519805685877014925}
   m_Layer: 0
   m_Name: EnemyWithMatchete
-  m_TagString: Team2
+  m_TagString: Team1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,19 +169,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6027fcdd9695f44aa6efd1296b5eb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   npc: {fileID: 8519805685877014926}
-  player: {fileID: 0}
   agent: {fileID: 8519805685877014931}
-  rangeToShoot: 40
-  targetRange: 40
+  rangeToShoot: 4
+  targetRange: 10
   whatIsTeam1:
     serializedVersion: 2
     m_Bits: 8
   whatIsTeam2:
     serializedVersion: 2
     m_Bits: 128
-  isItTeam1: 0
+  isItTeam1: 1
 --- !u!114 &8519805685877014925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,26 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a313756573d8441a592cfbd108a064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 150
---- !u!114 &8519805686638479134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6400089436047141044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fd80af8365b6414c9b2d35320c205fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 50
-  rangeToShoot: 2
-  shootForce: 30
-  fireRate: 15
-  toThrow: 0
-  enemy: {fileID: 8519805685877014926}
-  grenadePrefabs: {fileID: 3381571440357765037, guid: 06fa4959e8a60334f8c23fbed3acece5, type: 3}
+  health: 100
 --- !u!1 &8519805687340204386
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +284,7 @@ SphereCollider:
   m_GameObject: {fileID: 8519805687340204386}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

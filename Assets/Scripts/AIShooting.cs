@@ -5,14 +5,17 @@ using UnityEngine;
 public class AIShooting : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float damage = 10f;
-    public float rangeToShoot = 5f;
+   
+   
     public float shootForce = 30f;
     public float fireRate = 1f;
     public bool toThrow = false;
     public GameObject enemy;
     public GameObject grenadePrefabs;
-    
+    private EnemyAI enemyAI;
+  
+    private float rangeToShoot;
+    public float damage;
     //public ParticleSystem muzzleShot;
     //public GameObject impactEffect;
 
@@ -20,11 +23,17 @@ public class AIShooting : MonoBehaviour
     private float nextTime = 0f;
     //public Animator animator;
 
+    private void Start()
+    {
+        enemyAI = enemy.GetComponent<EnemyAI>();
+        rangeToShoot = enemyAI.rangeToShoot;
+       
+    }
 
     public void Shoot()
     {
 
-       
+      
         RaycastHit hit;
         if (!toThrow)
         {
@@ -41,7 +50,7 @@ public class AIShooting : MonoBehaviour
                     if (target != null)
                     {
                         //target.Damage(damage);
-                        target.Damage(30);
+                        target.Damage(damage);
                     }
                     if (hit.rigidbody != null)
                     {
@@ -57,7 +66,7 @@ public class AIShooting : MonoBehaviour
             if (Time.time >= nextTime)
             {
                 nextTime = Time.time + 4f / fireRate;
-                Debug.Log("STRZAL");
+            
       
                 GameObject grenade = Instantiate(grenadePrefabs, transform.position, transform.rotation);
                 

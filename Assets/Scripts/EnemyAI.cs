@@ -5,9 +5,8 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
 
-    public Camera cam;
+    
     public GameObject npc;
-    public GameObject player;
     public NavMeshAgent agent;
     public float rangeToShoot = 5f;
     public float targetRange = 10f;
@@ -17,12 +16,14 @@ public class EnemyAI : MonoBehaviour
     private bool haveT = false;
     private AIShooting aishoot;
     private bool enemyInSightRange, enemyInAttackRange;
-    public LayerMask whatIsTeam1 , whatIsTeam2 ;
+    public LayerMask whatIsTeam1;
+    public LayerMask whatIsTeam2;
     public bool isItTeam1;
 
 
     void Start()
     {
+       
         aishoot = npc.transform.GetChild(0).GetComponent<AIShooting>();
         npcRb = npc.GetComponent<Rigidbody>();
         waypointy = GameObject.FindGameObjectWithTag("Waypointy").transform;
