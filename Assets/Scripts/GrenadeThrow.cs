@@ -8,20 +8,22 @@ public class GrenadeThrow : MonoBehaviour
     public GameObject grenadePrefabs;
     public float fireRate = 15;
     private float nextTime = 0f;
+    public PlayerStats playerStats;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        playerStats = player.GetComponent<PlayerStats>();
 
     }
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time >= nextTime)
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextTime && playerStats.currMana>=40)
         {
             nextTime = Time.time + 4f / fireRate;
             ThrowGrenade();
-
+            playerStats.UseMagic(40f);
         }
     }
     // Update is called once per frame
