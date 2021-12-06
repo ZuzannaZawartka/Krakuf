@@ -6,15 +6,20 @@ TagManager:
   tags:
   - Obiekty
   - Waypointy
+  - House
+  - Shop
+  - Enemy
+  - Team1
+  - Team2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Team1
   - Water
   - UI
   - Ground
-  - 
+  - Team2
   - 
   - 
   - 
