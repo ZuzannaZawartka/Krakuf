@@ -5,21 +5,16 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public string playerClass;
-
     public float maxHP;
     public float currHP;
     public bool isDead;
-
     public int level;
     public float maxExp;
     public float currExp;
-
     public float maxStamina;
     public float currStamina;
-
     public float maxMana;
     public float currMana;
-
     public int str;
     public int intel;
     public int dex;
@@ -36,6 +31,134 @@ public class PlayerStats : MonoBehaviour
 
         playerClass = "Mage";
 
+        SetVariables();
+        hud.UpdatePlayerClass(playerClass);
+        CheckExp();
+        CheckHP();
+        CheckStamina();
+        CheckMana();
+
+    }
+    private void Update()
+    {
+        // Inputy tylko po to ¿eby sprawdziæ dzia³anie :)
+        if (Input.GetKeyDown(KeyCode.T)) {
+            TakeDamage(10);
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Heal(10);
+        }
+
+        if (Input.GetKeyDown(KeyCode.G)) 
+        {
+            GetExp(60);
+        }
+        //Stamina  i Mana regen 
+        CheckSprint();
+        ManaRegen();
+    }
+    public void CheckHP()
+    {   //sprawdzanie stanu HP gracza
+        if (currHP <= 0)
+        {
+            currHP = 0;
+            Dead();
+        }
+        if (currHP > maxHP)
+            currHP = maxHP;
+        
+        hud.UpdateHP(currHP, maxHP);
+    }
+    public void TakeDamage(float damage)
+    {   //Wywolanie tej funkcji zada graczowi obrazenia 
+        currHP -= damage;
+        CheckHP();
+    }
+    public void Heal(float heal)
+    {   //Wywo³anie tej funkcji uleczy gracza
+        currHP += heal;
+        CheckHP();
+    }
+    public void Dead()
+    {   //Funkcja ktora wykonuje siê gdy gracz umrze
+        Debug.Log("Game Over!");
+        isDead = true;
+    }
+
+    public void CheckStamina()
+    {   //Sprawdzanei stanu stamini gracza
+        if (currStamina > maxStamina)
+            currStamina = maxStamina;
+        if (currStamina <= 0)
+            currStamina = 0;
+        
+        hud.UpdateStamina(currStamina, maxStamina);
+    }
+    public void CheckSprint()
+    {   //Zu¿ycie staminy na sprint i regeneracja gdy gracz nie sprinttuje
+        if (playerControl.sprint && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0))
+        {
+            currStamina -= 10 * Time.deltaTime;
+            CheckStamina();
+        }
+        if (!playerControl.sprint || (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0))
+        {
+            currStamina += 7 * Time.deltaTime;
+            CheckStamina();
+        }
+        if (playerControl.sprint == true && currStamina < 5)
+        {
+            playerControl.speed /= 2;
+            playerControl.sprint = false;
+        }
+    }
+    public void CheckMana()
+    {   //Sprawdzanie stanu many gracza
+        if (currMana > maxMana)
+            currMana = maxMana;
+        if (currMana <= 0)
+            currMana = 0;
+        
+        hud.UpdateMana(currMana, maxMana);
+    }
+    public void UseMagic(float manaCost) 
+    {   // Zu¿ycie many gdy gracz u¿ywa magi
+        currMana -= manaCost;
+        CheckMana();
+    }
+    public void ManaRegen() 
+    {   //Regeneracja many 
+        if (currMana < maxMana)
+        {
+            currMana += 5 * Time.deltaTime;
+            CheckMana();
+        }
+    }
+    public void GetExp(float exp) 
+    {   // Wywo³anie dodaje graczowi Expa
+        currExp += exp;
+        CheckExp();
+    }
+    public void CheckExp()
+    {   //Sprawdzanie poziomu Expa, jeœli przekracza maxExp => level up
+        hud.UpdateExp(level, currExp, maxExp);
+        if (currExp >= maxExp)
+        {
+            level += 1;
+            currExp -= maxExp;
+            maxExp = 300 * level;
+            str += strPerLv;
+            intel += intelPerLv;
+            dex += dexPerLv;
+            maxHP += 10;
+            currHP = maxHP;
+            CheckHP();
+            CheckExp();
+        }
+    }
+    public void SetVariables() 
+    {   //Przyznanie wartoœci pocz¹tkowych, w zale¿noœci od wybranej klasy
         str = 10;
         intel = 10;
         dex = 10;
@@ -53,7 +176,7 @@ public class PlayerStats : MonoBehaviour
             str = 15;
             strPerLv = 3;
         }
-        else 
+        else if(playerClass == "Archer")
         {
             dex = 15;
             dexPerLv = 3;
@@ -72,128 +195,5 @@ public class PlayerStats : MonoBehaviour
 
         maxMana = 100;
         currMana = maxMana;
-
-
-        hud.UpdatePlayerClass(playerClass);
-        CheckExp();
-        CheckHP();
-        CheckStamina();
-        CheckMana();
-
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T)) {
-            TakeDamage(10);
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Heal(10);
-        }
-
-        if (Input.GetKeyDown(KeyCode.G)) 
-        {
-            GetExp(60);
-        }
-
-        if (playerControl.sprint) 
-        {
-            currStamina -= 10   *Time.deltaTime;
-            CheckStamina();
-        }
-        if (!playerControl.sprint)
-        {
-            currStamina += 7 * Time.deltaTime;
-            CheckStamina();
-        }
-
-        if (playerControl.sprint == true && currStamina < 3) 
-        {
-            playerControl.speed /= 2;
-            playerControl.sprint = false;
-        }
-
-        if (currMana < maxMana) 
-        {
-            currMana += 5 * Time.deltaTime;
-            CheckMana();
-        }
-
-    }
-    public void CheckHP()
-    {
-        if (currHP <= 0)
-        {
-            currHP = 0;
-            Dead();
-        }
-        if (currHP > maxHP)
-        {
-            currHP = maxHP;
-        }
-        hud.UpdateHP(currHP, maxHP);
-    }
-    public void TakeDamage(float damage)
-    {
-        currHP -= damage;
-        CheckHP();
-    }
-    public void Heal(float heal)
-    {
-        currHP += heal;
-        CheckHP();
-    }
-    public void Dead()
-    {
-        Debug.Log("Game Over!");
-        isDead = true;
-    }
-
-    public void CheckStamina()
-    {
-        if (currStamina > maxStamina)
-            currStamina = maxStamina;
-        if (currStamina <= 0)
-        {
-            currStamina = 0;
-        }
-        hud.UpdateStamina(currStamina, maxStamina);
-    }
-    public void CheckMana()
-    {
-        if (currMana > maxMana)
-            currMana = maxMana;
-        if (currMana <= 0)
-        {
-            currMana = 0;
-        }
-        hud.UpdateMana(currMana, maxMana);
-    }
-    public void UseMagic(float manaCost) 
-    {
-        currMana -= manaCost;
-        CheckMana();
-    }
-    public void GetExp(float exp) 
-    {
-        currExp += exp;
-        CheckExp();
-    }
-    public void CheckExp()
-    {
-        hud.UpdateExp(level, currExp, maxExp);
-        if (currExp >= maxExp)
-        {
-            level += 1;
-            currExp -= maxExp;
-            maxExp = 300 * level;
-            str += strPerLv;
-            intel += intelPerLv;
-            dex += dexPerLv;
-            maxHP += 10;
-            currHP = maxHP;
-            CheckHP();
-            CheckExp();
-        }
     }
 }

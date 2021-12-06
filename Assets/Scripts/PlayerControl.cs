@@ -44,7 +44,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         //Sprint
-        if (Input.GetKeyDown(KeyCode.LeftShift) && player.isGrounded && playerStats.currStamina >20)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && player.isGrounded && playerStats.currStamina >10)
         {
             speed *= 2;
             sprint = true;
