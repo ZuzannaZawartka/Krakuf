@@ -44,7 +44,7 @@ public class AIShooting : MonoBehaviour
 
                 //muzzleShot.Play();
                 
-                Debug.Log("strzal");
+               
                     PlayerStats target = hit.transform.GetComponent<PlayerStats>();
                     if (target != null)
                     {
@@ -52,7 +52,9 @@ public class AIShooting : MonoBehaviour
                         target.TakeDamage(damage);
                     }
                     if (hit.rigidbody != null)
+
                     {
+              
                         hit.rigidbody.AddForce(-hit.normal * shootForce);
                     }
                 }

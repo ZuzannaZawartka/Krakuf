@@ -6,19 +6,20 @@ public class Target : MonoBehaviour
 {
     public PlayerStats playerStats;
     public float health =100 ;
-   // public float gainExp;
-   // public float damege;
+    public float gainExp;
+    public float damege;
 
     private void Start()
     {
-        //playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
-       // health = 50 + 10 * playerStats.level;
-       // gainExp = 50 + 10 * playerStats.level;
-       // damege = 10 + playerStats.level;
+        playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        health = 50 + 10 * playerStats.level;
+        gainExp = 50 + 10 * playerStats.level;
+        damege = 10 + playerStats.level;
     }
     public void Damage(float amount)
     {
         health -= amount;
+       
         if (health <= 0)
         {
             
@@ -27,7 +28,7 @@ public class Target : MonoBehaviour
     }
     void Die()
     {
-      // playerStats.GetExp(gainExp);
+      playerStats.GetExp(gainExp);
         Destroy(gameObject);
     }
 }

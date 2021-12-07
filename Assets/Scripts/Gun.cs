@@ -43,11 +43,11 @@ public class Gun : MonoBehaviour
     {
         RaycastHit hit;
         
-        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
+        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.TransformDirection(Vector3.forward), out hit, range)) 
         {
-
+            Debug.DrawRay(transform.position,transform.forward * 1000, Color.cyan);
             Target target = hit.transform.GetComponent<Target>();
-            Debug.Log(hit.transform.name);
+          
             if (target != null)
             {
                 
@@ -56,6 +56,7 @@ public class Gun : MonoBehaviour
             }
             if (hit.rigidbody != null)
             {
+                Debug.Log("NIE WIDZI");
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
             }
         }
