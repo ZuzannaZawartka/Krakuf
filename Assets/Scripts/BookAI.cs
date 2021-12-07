@@ -19,11 +19,12 @@ public class BookAI : MonoBehaviour
     }
     public void OnCollisionEnter(Collision collision)
     {
-        Target obj = collision.gameObject.GetComponent<Target>();
-        if (collision.gameObject.GetComponent<Target>() != null)
+        PlayerStats obj = collision.gameObject.GetComponent<PlayerStats>();
+        if (collision.gameObject.GetComponent<PlayerStats>() != null)
         {
-            obj.Damage(damage);
-            Debug.Log("KOLIZAJ");
+            obj.TakeDamage(damage);
+            
+           // Instantiate(exEffect, transform.position, transform.rotation);
             Delete();
         }
         else

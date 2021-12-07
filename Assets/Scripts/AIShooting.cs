@@ -20,7 +20,7 @@ public class AIShooting : MonoBehaviour
     //public GameObject impactEffect;
 
     // Update is called once per frame
-    private float nextTime = 0f;
+
     //public Animator animator;
 
     private void Start()
@@ -40,41 +40,40 @@ public class AIShooting : MonoBehaviour
             if (Physics.Raycast(enemy.transform.position, enemy.transform.forward, out hit, rangeToShoot))
             {
 
-                if (Time.time >= nextTime)
-                {
 
-                    //muzzleShot.Play();
-                    nextTime = Time.time + 4f / fireRate;
-                    Debug.Log("STRZAL");
-                    Target target = hit.transform.GetComponent<Target>();
+
+                //muzzleShot.Play();
+                
+                Debug.Log("strzal");
+                    PlayerStats target = hit.transform.GetComponent<PlayerStats>();
                     if (target != null)
                     {
                         //target.Damage(damage);
-                        target.Damage(damage);
+                        target.TakeDamage(damage);
                     }
                     if (hit.rigidbody != null)
                     {
                         hit.rigidbody.AddForce(-hit.normal * shootForce);
                     }
                 }
-            }
+            
             //GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             //Destroy(impact, 2);
         }
         else {
 
-            if (Time.time >= nextTime)
-            {
-                nextTime = Time.time + 4f / fireRate;
+           
+                
             
       
-                GameObject grenade = Instantiate(grenadePrefabs, transform.position, transform.rotation);
+                GameObject grenade = Instantiate(grenadePrefabs, transform.position, Quaternion.identity);
                 
                 Rigidbody rb = grenade.GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * shootForce, ForceMode.VelocityChange);
-                
-            }
+                rb.AddForce(transform.forward * shootForce, ForceMode.Impulse);
+               // rb.AddForce(transform.up * (shootForce/8f), ForceMode.Impulse);
+
         }
+        
 
 
 

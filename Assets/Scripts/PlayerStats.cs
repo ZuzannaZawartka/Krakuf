@@ -82,7 +82,7 @@ public class PlayerStats : MonoBehaviour
     }
     public void Dead()
     {   //Funkcja ktora wykonuje siê gdy gracz umrze
-        Debug.Log("Game Over!");
+        //Debug.Log("Game Over!");
         isDead = true;
     }
 

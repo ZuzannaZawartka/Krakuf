@@ -374,8 +374,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.20571032, y: 0.06388786, z: 0.22882833}
-  m_Center: {x: -0.0032965802, y: 0.0042816363, z: 0.0034209862}
+  m_Size: {x: 0.5697653, y: 0.06262535, z: 0.22882833}
+  m_Center: {x: 0.018201768, y: 0.0025151316, z: 0.0034209862}
 --- !u!54 &7428794361865245561
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -405,8 +405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 3
-  damage: 10
-  exEffect: {fileID: 0}
+  damage: 50
+  exEffect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
   force: 700
   vect: 5
 --- !u!1 &8416272007918961125

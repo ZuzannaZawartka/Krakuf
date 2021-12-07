@@ -9,17 +9,21 @@ public class Grenade : MonoBehaviour
     public GameObject exEffect;
     public float force = 700f;
     public float vect = 5f;
+    
+    private float damage;
     float countdown;
     bool hasExploded = false;
 
     void Start()
     {
+        damage = GameObject.Find("bookInHand").GetComponent<GrenadeThrow>().damage;
         countdown = delay;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         countdown -= Time.deltaTime;
         if (countdown <= 0f && !hasExploded)
         {
@@ -43,7 +47,7 @@ public class Grenade : MonoBehaviour
             if (tar != null)
             {
                // Destroy(tar.gameObject);
-                tar.Damage(20);
+                tar.Damage(damage);
             }
         }
         Collider[] collidersToMove = Physics.OverlapSphere(transform.position, vect);
@@ -60,4 +64,5 @@ public class Grenade : MonoBehaviour
         Destroy(gameObject);
 
     }
+    
 }

@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour
 {
     // Start is called before the first frame update
     public float damage = 10f;
-    public float range = 100f;
+    public float range = 50f;
     public float impactForce = 30f;
     public float fireRate = 15f;
     
@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
 
     // Update is called once per frame
     private float nextTime = 0f;
-    public Animator animator;
+  //  public Animator animator;
 
 
 
@@ -27,10 +27,12 @@ public class Gun : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1") && Time.time >= nextTime)
         {
+            //
 
-            animator.SetTrigger("Shoot1");
+            // animator.SetTrigger("Shoot1");
             nextTime = Time.time + 4f / fireRate;
             //muzzleShot.Play();
+           
             Shoot();
 
         }
@@ -40,14 +42,17 @@ public class Gun : MonoBehaviour
     void Shoot()
     {
         RaycastHit hit;
-
+        
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
 
             Target target = hit.transform.GetComponent<Target>();
+            Debug.Log(hit.transform.name);
             if (target != null)
             {
+                
                 target.Damage(damage);
+                
             }
             if (hit.rigidbody != null)
             {
