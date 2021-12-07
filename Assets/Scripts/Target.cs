@@ -5,7 +5,7 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public PlayerStats playerStats;
-    public float health;
+    public float health =100 ;
     public float gainExp;
     public float damege;
 
@@ -19,14 +19,16 @@ public class Target : MonoBehaviour
     public void Damage(float amount)
     {
         health -= amount;
+       
         if (health <= 0)
         {
+            
             Die();
         }
     }
     void Die()
     {
-        playerStats.GetExp(gainExp);
+      playerStats.GetExp(gainExp);
         Destroy(gameObject);
     }
 }

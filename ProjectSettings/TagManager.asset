@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Team1
   - Team2
+  - Playerr
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - Team2
+  - Player
   - 
   - 
   - 
