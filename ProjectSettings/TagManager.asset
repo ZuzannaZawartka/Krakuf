@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Team1
   - Team2
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - UI
   - Ground
   - Team2
-  - 
+  - Player
   - 
   - 
   - 
