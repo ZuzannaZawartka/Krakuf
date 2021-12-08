@@ -151,7 +151,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!195 &8519805685877014931
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -237,8 +237,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7285614, y: 1, z: 0.7472081}
-  m_Center: {x: 0.018001556, y: 0, z: 0.041113377}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8519805686638479129
 PrefabInstance:
   m_ObjectHideFlags: 0
