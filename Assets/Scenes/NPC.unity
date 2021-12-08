@@ -1553,6 +1553,11 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 256
+  shoot:
+  - {fileID: 8300000, guid: 52f85ca4df00aab42899ddde9a02028b, type: 3}
+  - {fileID: 8300000, guid: 6c776c3075e739542a43be848c9f333f, type: 3}
+  - {fileID: 8300000, guid: 9f2e13afcedcd2d4ab4f736e897f4593, type: 3}
+  - {fileID: 8300000, guid: 9e8c3710728c9784882079e95d1ca4ac, type: 3}
   stopNpc: 1
 --- !u!82 &739635742
 AudioSource:
@@ -2208,6 +2213,7 @@ MonoBehaviour:
   fireRate: 15
   playerStats: {fileID: 0}
   player: {fileID: 1687155646}
+  damage: 50
 --- !u!1 &1076912302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,7 +2285,6 @@ MonoBehaviour:
   impactForce: 30
   fireRate: 15
   fpsCamera: {fileID: 1777062854}
-  animator: {fileID: 1076912304}
 --- !u!65 &1076912306
 BoxCollider:
   m_ObjectHideFlags: 0
