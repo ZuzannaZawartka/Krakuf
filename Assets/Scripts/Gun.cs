@@ -21,7 +21,7 @@ public class Gun : MonoBehaviour
 
     // Update is called once per frame
     private float nextTime = 0f;
-    //  public Animator animator;
+    public Animator animator;
 
     private void Start()
     {
@@ -46,7 +46,7 @@ public class Gun : MonoBehaviour
         {
             //
 
-            // animator.SetTrigger("Shoot1");
+            animator.SetTrigger("Shoot1");
             nextTime = Time.time + 4f / fireRate;
             //muzzleShot.Play();
            
