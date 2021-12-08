@@ -5,7 +5,8 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public PlayerStats playerStats;
-    public float health =100 ;
+    public Bar hpBar;
+    public float health;
     public float gainExp;
     public float damege;
 
@@ -15,10 +16,13 @@ public class Target : MonoBehaviour
         health = 50 + 10 * playerStats.level;
         gainExp = 50 + 10 * playerStats.level;
         damege = 10 + playerStats.level;
+        hpBar.SetMaxValue(health);
+        hpBar.SetCurrentValue(health);
     }
     public void Damage(float amount)
     {
         health -= amount;
+        hpBar.SetCurrentValue(health);
        
         if (health <= 0)
         {
