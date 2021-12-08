@@ -174,7 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a313756573d8441a592cfbd108a064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 0}
   health: 100
+  gainExp: 0
+  damege: 0
 --- !u!1 &349323014728856170
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,11 +308,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381571440357765036, guid: 06fa4959e8a60334f8c23fbed3acece5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.092
+      value: 0.223
       objectReference: {fileID: 0}
     - target: {fileID: 3381571440357765036, guid: 06fa4959e8a60334f8c23fbed3acece5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.776
+      value: 1.663
       objectReference: {fileID: 0}
     - target: {fileID: 3381571440357765036, guid: 06fa4959e8a60334f8c23fbed3acece5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -353,6 +356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3381571440357764691, guid: 06fa4959e8a60334f8c23fbed3acece5, type: 3}
+    - {fileID: 3381571440357764695, guid: 06fa4959e8a60334f8c23fbed3acece5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 06fa4959e8a60334f8c23fbed3acece5, type: 3}
 --- !u!1 &3041277893475687356 stripped
 GameObject:

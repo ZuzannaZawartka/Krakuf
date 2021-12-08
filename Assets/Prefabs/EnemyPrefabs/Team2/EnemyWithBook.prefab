@@ -248,8 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npc: {fileID: 1023178704014236788}
   agent: {fileID: 1023178704014236785}
-  rangeToShoot: 20
-  targetRange: 10
+  rangeToShoot: 40
+  targetRange: 20
   whatIsTeam1:
     serializedVersion: 2
     m_Bits: 8
@@ -269,7 +269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a313756573d8441a592cfbd108a064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 0}
   health: 100
+  gainExp: 0
+  damege: 0
 --- !u!114 &2509254059573094818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,11 +286,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootForce: 50
-  fireRate: 10
+  fireRate: 20
   toThrow: 1
   enemy: {fileID: 1023178704014236788}
   grenadePrefabs: {fileID: 4053031237280905733, guid: 21a826193846be14aa2fd59cd61de833, type: 3}
-  damage: 10
+  damage: 5
 --- !u!1001 &6665469031558283137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -302,6 +305,30 @@ PrefabInstance:
     - target: {fileID: -8003244079492544614, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: -6393066689138441262, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
+      propertyPath: m_Size.x
+      value: 0.18770015
+      objectReference: {fileID: 0}
+    - target: {fileID: -6393066689138441262, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
+      propertyPath: m_Size.y
+      value: 0.10709798
+      objectReference: {fileID: 0}
+    - target: {fileID: -6393066689138441262, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
+      propertyPath: m_Size.z
+      value: 0.2564329
+      objectReference: {fileID: 0}
+    - target: {fileID: -6393066689138441262, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
+      propertyPath: m_Center.x
+      value: -0.00012880564
+      objectReference: {fileID: 0}
+    - target: {fileID: -6393066689138441262, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
+      propertyPath: m_Center.y
+      value: 0.012805223
+      objectReference: {fileID: 0}
+    - target: {fileID: -6393066689138441262, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
+      propertyPath: m_Center.z
+      value: -0.017705739
       objectReference: {fileID: 0}
     - target: {fileID: 4379412334719526644, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
       propertyPath: m_RootOrder
@@ -366,6 +393,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2866594811549631398, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
     - {fileID: 5063297718512453256, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
+    - {fileID: -9157912867364887515, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
 --- !u!1 &6937316476303841652 stripped
 GameObject:

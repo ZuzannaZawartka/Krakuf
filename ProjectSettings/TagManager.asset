@@ -12,6 +12,7 @@ TagManager:
   - Team1
   - Team2
   - NPC
+  - Playerr
   layers:
   - Default
   - TransparentFX

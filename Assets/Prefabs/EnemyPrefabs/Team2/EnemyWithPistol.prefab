@@ -17,7 +17,7 @@ MonoBehaviour:
   toThrow: 0
   enemy: {fileID: 8799026562783545967}
   grenadePrefabs: {fileID: 3966473107649526081, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
-  damage: 10
+  damage: 30
 --- !u!1 &8799026562407223705
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a313756573d8441a592cfbd108a064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 0}
   health: 100
+  gainExp: 0
+  damege: 0
 --- !u!1001 &8799026563742497483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,15 +316,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966473107649526080, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13100052
+      value: -0.038
       objectReference: {fileID: 0}
     - target: {fileID: 3966473107649526080, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.052999973
+      value: 0.052
       objectReference: {fileID: 0}
     - target: {fileID: 3966473107649526080, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0179996
+      value: 0.909
       objectReference: {fileID: 0}
     - target: {fileID: 3966473107649526080, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
       propertyPath: m_LocalRotation.w
@@ -355,7 +358,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3966473107649526139, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
 --- !u!1 &5555139893229650826 stripped
 GameObject:

@@ -10,6 +10,7 @@ public class GrenadeThrow : MonoBehaviour
     private float nextTime = 0f;
     public PlayerStats playerStats;
     public GameObject player;
+    public float damage = 50;
 
     // Start is called before the first frame update
     void Start()

@@ -23,7 +23,7 @@ public class EnemySpawnManager : MonoBehaviour
     }
     void Spawn()
     {
-        Debug.Log(gameObject.transform.childCount);
+        
         if(timer >= timeToNextSpawn && gameObject.transform.childCount < enemysToSpawn)
         {
             GameObject inst = Instantiate(enemys[Random.Range(0, enemys.Length)],transform.position,transform.rotation,gameObject.transform);
