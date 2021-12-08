@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Team1
   - Team2
+  - NPC
   - Playerr
   layers:
   - Default
@@ -20,8 +21,8 @@ TagManager:
   - Water
   - UI
   - Ground
+  - Team2
   - Player
-  - 
   - 
   - 
   - 

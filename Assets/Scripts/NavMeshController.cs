@@ -12,9 +12,12 @@ public class NavMeshController : MonoBehaviour
     private Rigidbody npcRb;
     private Transform waypointy;
     private int change_dest = 0;
+    public GameObject Npc;
+    public Dialogue skrypt;
 
     void Start()
     {
+        skrypt = Npc.GetComponent<Dialogue>();
         npcRb = npc.GetComponent<Rigidbody>();
         waypointy = GameObject.FindGameObjectWithTag("Waypointy").transform; //Przypisujemy do waypointy obiekty z danym tagiem 
         change_dest = UnityEngine.Random.Range(0, waypointy.childCount);  // Losujemy po ilu trasach npc ma zmieniæ destynajcê 
@@ -24,7 +27,7 @@ public class NavMeshController : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        if(agent.remainingDistance == 0)
+        if(agent.remainingDistance < 0.5)
         {
             agent.SetDestination(waypointy.GetChild(Where()).transform.position); // Jeœli npc doszed³ do celu, wywo³aj funckjê where (co i  gdzie ma npc robiæ)
             //Debug.Log(agent.destination);
@@ -49,7 +52,7 @@ public class NavMeshController : MonoBehaviour
                 array1[i] = 999999999999; //Wykluczamy aktualny punkt, wsadzi³em jak¹œ nierealn¹ liczbê, wiem u³omnie ale naj³atwiej chyba
                 array2[i] = 999999999999;
             }
-            else
+            else 
             {
                 array1[i] = Math.Abs(waypointy.GetChild(i).transform.position.x - transform.position.x); // Sprawdzamy odleg³osci x i z destynacji
                 array2[i] = Math.Abs(waypointy.GetChild(i).transform.position.z - transform.position.z);
@@ -80,7 +83,7 @@ public class NavMeshController : MonoBehaviour
 
         if (indeks1 == indeks2) // Jeœli ten punkt jest najbli¿ej wzglêdem osi x i z, staje siê celem
         {
-            //Debug.Log("1");
+            Debug.Log(indeks1);
             return indeks1;
         }
         else // Jeœli ten punkt jest najbli¿ej wzglêdem osi x a inny z, lub na odwrót, sprawdzamy który jest bli¿ej wzglêdem drugiej osi i wyznaczamy nowy cel
@@ -89,17 +92,17 @@ public class NavMeshController : MonoBehaviour
             r2 = Math.Abs(min_l2 - array2[indeks1]);
             if(r1 < r2)
             {
-                //Debug.Log("2");
+                Debug.Log(indeks2);
                 return indeks2;
             }
             else if(r2 < r1)
             {
-                //Debug.Log("3");
+                Debug.Log(indeks1);
                 return indeks1;
             }
             else
             {
-                //Debug.Log("4");
+                Debug.Log("4");
                 return UnityEngine.Random.Range(0, waypointy.childCount); // Je¿eli s¹ takie same to losujemy który ma byc celem 
             }
         }
