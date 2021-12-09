@@ -25,35 +25,26 @@ public class PlayerStats : MonoBehaviour
     public PlayerControl playerControl;
     public PlayerHUD hud;
     private void Start()
-    {
-        playerControl = GetComponent<PlayerControl>();
-        hud = GetComponent<PlayerHUD>();
-
-        playerClass = "Mage";
-
+    {   //ustawianie klasy i odpowiednich do niej zmiennych
+        SetClass();
         SetVariables();
-        hud.UpdatePlayerClass(playerClass);
         CheckExp();
         CheckHP();
         CheckStamina();
         CheckMana();
-
     }
     private void Update()
     {
         // Inputy tylko po to ¿eby sprawdziæ dzia³anie :)
-        if (Input.GetKeyDown(KeyCode.T)) {
+        if (Input.GetKeyDown(KeyCode.T))
             TakeDamage(10);
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Heal(10);
-        }
 
+        if (Input.GetKeyDown(KeyCode.Y))
+            Heal(10);
+        
         if (Input.GetKeyDown(KeyCode.G)) 
-        {
             GetExp(60);
-        }
+        
         //Stamina  i Mana regen 
         CheckSprint();
         ManaRegen();
@@ -82,7 +73,7 @@ public class PlayerStats : MonoBehaviour
     }
     public void Dead()
     {   //Funkcja ktora wykonuje siê gdy gracz umrze
-        //Debug.Log("Game Over!");
+        Debug.Log("Game Over!");
         isDead = true;
     }
 
@@ -156,6 +147,19 @@ public class PlayerStats : MonoBehaviour
             CheckHP();
             CheckExp();
         }
+    }
+    public void SetClass()
+    {   //Ustawiane klasy na podstawie wygoru gracza ze sceny ClassSelector
+        playerControl = GetComponent<PlayerControl>();
+        hud = GetComponent<PlayerHUD>();
+        if (PlayerPrefs.GetInt("playerClass") == 0)
+            playerClass = "Archer";
+        else if (PlayerPrefs.GetInt("playerClass") == 1)
+            playerClass = "Fighter";
+        else
+            playerClass = "Mage";
+
+        hud.UpdatePlayerClass(playerClass);
     }
     public void SetVariables() 
     {   //Przyznanie wartoœci pocz¹tkowych, w zale¿noœci od wybranej klasy
