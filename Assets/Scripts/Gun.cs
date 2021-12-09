@@ -5,23 +5,23 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float damage = 10f;
-    public float range = 50f;
-    public float impactForce = 30f;
-    public float fireRate = 15f;
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float range = 50f;
+    [SerializeField] private float impactForce = 30f;
+    [SerializeField] private float fireRate = 15f;
 
-    public int maxAmmo = 10;
+    [SerializeField] private int maxAmmo = 10;
     private int currentAmmo = -1;
-    public float reloadTime = 1f;
+    [SerializeField] private float reloadTime = 1f;
     private bool isReloading = false;
-    public bool ammo = false;
-    public Camera fpsCamera;
+    [SerializeField] private bool ammo = false;
+    [SerializeField] private Camera fpsCamera;
     //public ParticleSystem muzzleShot;
     //public GameObject impactEffect;
 
     // Update is called once per frame
     private float nextTime = 0f;
-    public Animator animator;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -44,24 +44,23 @@ public class Gun : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1") && Time.time >= nextTime && (currentAmmo > 0 || ammo == false))
         {
-            //
-
-            animator.SetTrigger("Shoot1");
-            nextTime = Time.time + 4f / fireRate;
-            //muzzleShot.Play();
-           
             Shoot();
-
         }
-        if(currentAmmo ==0 && ammo == true)
-        {
-            Debug.Log("BRAK AMMO");
-        }
+     
     }
 
 
     void Shoot()
     {
+        if (currentAmmo <= 0 && ammo == true)
+        {
+            Debug.Log("BRAK AMMO");
+            return;
+        }
+
+        animator.SetTrigger("Shoot1");
+        nextTime = Time.time + 4f / fireRate;
+        //muzzleShot.Play();
         RaycastHit hit;
         --currentAmmo;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.TransformDirection(Vector3.forward), out hit, range)) 
@@ -71,13 +70,13 @@ public class Gun : MonoBehaviour
           
             if (target != null)
             {
-                
+                //zdaanie obra¿eñ
                 target.Damage(damage);
                 
             }
             if (hit.rigidbody != null)
             {
-                
+                //odrzut obiektu
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
             }
         }
