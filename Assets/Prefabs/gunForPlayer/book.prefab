@@ -391,7 +391,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &-1719788395730477768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,7 +408,6 @@ MonoBehaviour:
   exEffect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
   force: 700
   vect: 5
-  gt: {fileID: 2574355028622832973, guid: f024c08c854641c448a9d5742f293dd8, type: 3}
 --- !u!1 &8416272007918961125
 GameObject:
   m_ObjectHideFlags: 0
