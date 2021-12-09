@@ -8,6 +8,8 @@ public class Dialogue : MonoBehaviour
     public GameObject npcText;
     public LayerMask layer;
     AudioSource audioSource;
+    public AudioClip[] shoot;
+    private AudioClip shootClip;
     public bool stopNpc = false;
 
     // Start is called before the first frame update
@@ -25,7 +27,10 @@ public class Dialogue : MonoBehaviour
             npcText.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
+                int index = UnityEngine.Random.Range(0, shoot.Length);
                 stopNpc = true;
+                shootClip = shoot[index];
+                audioSource.clip = shootClip;
                 audioSource.Play();
             }
         }
