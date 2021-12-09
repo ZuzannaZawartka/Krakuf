@@ -3208,7 +3208,11 @@ MonoBehaviour:
   range: 100
   impactForce: 30
   fireRate: 15
+  maxAmmo: 10
+  reloadTime: 1
+  ammo: 0
   fpsCamera: {fileID: 1355643456047311108}
+  animator: {fileID: 0}
 --- !u!95 &1355643456235169425
 Animator:
   serializedVersion: 3
@@ -3307,25 +3311,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: klasa
---- !u!95 &1355643454509533733
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2727924413217513038}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: efd5d2f495eb4f94db6df335e5276e41, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1355643454509533914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3342,7 +3327,11 @@ MonoBehaviour:
   range: 100
   impactForce: 30
   fireRate: 15
+  maxAmmo: 10
+  reloadTime: 1
+  ammo: 0
   fpsCamera: {fileID: 1355643456047311108}
+  animator: {fileID: 0}
 --- !u!1001 &1355643455369701135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3405,7 +3394,7 @@ PrefabInstance:
     - target: {fileID: 3966473107649526084, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 1355643454509533733}
+      objectReference: {fileID: 0}
     - target: {fileID: 3966473107649526084, guid: ab8605b9ca7187a4d8bdf1c9dfd16975, type: 3}
       propertyPath: fpsCamera
       value: 

@@ -5,44 +5,64 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float damage = 10f;
-    public float range = 50f;
-    public float impactForce = 30f;
-    public float fireRate = 15f;
-    
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float range = 50f;
+    [SerializeField] private float impactForce = 30f;
+    [SerializeField] private float fireRate = 15f;
 
-
-    public Camera fpsCamera;
+    [SerializeField] private int maxAmmo = 10;
+    private int currentAmmo = -1;
+    [SerializeField] private float reloadTime = 1f;
+    private bool isReloading = false;
+    [SerializeField] private bool ammo = false;
+    [SerializeField] private Camera fpsCamera;
     //public ParticleSystem muzzleShot;
     //public GameObject impactEffect;
 
     // Update is called once per frame
     private float nextTime = 0f;
-  //  public Animator animator;
+    [SerializeField] private Animator animator;
 
-
+    private void Start()
+    {
+        if(currentAmmo == -1)
+        {
+            currentAmmo = maxAmmo;
+        }
+        
+    }
 
     void Update()
-    {
+    {   
 
-        if (Input.GetButtonDown("Fire1") && Time.time >= nextTime)
+        if(Input.GetKeyDown(KeyCode.R) && !isReloading && ammo == true)
         {
-            //
-
-            // animator.SetTrigger("Shoot1");
-            nextTime = Time.time + 4f / fireRate;
-            //muzzleShot.Play();
-           
-            Shoot();
-
+            Debug.Log("dziala");
+            StartCoroutine(Reload());
+            return;
         }
+
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextTime && (currentAmmo > 0 || ammo == false))
+        {
+            Shoot();
+        }
+     
     }
 
 
     void Shoot()
     {
+        if (currentAmmo <= 0 && ammo == true)
+        {
+            Debug.Log("BRAK AMMO");
+            return;
+        }
+
+        animator.SetTrigger("Shoot1");
+        nextTime = Time.time + 4f / fireRate;
+        //muzzleShot.Play();
         RaycastHit hit;
-        
+        --currentAmmo;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.TransformDirection(Vector3.forward), out hit, range)) 
         {
             Debug.DrawRay(transform.position,transform.forward * 1000, Color.cyan);
@@ -50,13 +70,13 @@ public class Gun : MonoBehaviour
           
             if (target != null)
             {
-                
+                //zdaanie obra¿eñ
                 target.Damage(damage);
                 
             }
             if (hit.rigidbody != null)
             {
-                Debug.Log("NIE WIDZI");
+                //odrzut obiektu
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
             }
         }
@@ -64,6 +84,15 @@ public class Gun : MonoBehaviour
         //GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
         //Destroy(impact, 2);
 
+    }
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        Debug.Log("RELOADING ..");
+        
+        yield return new WaitForSeconds(reloadTime);
+        currentAmmo = maxAmmo;
+        isReloading = false;
     }
 
 
