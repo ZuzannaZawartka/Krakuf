@@ -10,12 +10,19 @@ public class PlayerControl : MonoBehaviour
     public PlayerStats playerStats;
     public float gravity = -10;
     public bool sprint = false;
+    private Inventory inventory;
+    [SerializeField] private UI_Inventory ui_inventory;
     Vector3 velocity;
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<CharacterController>();
         playerStats = GetComponent<PlayerStats>();
+        inventory = new Inventory();
+        ui_inventory.SetInventory(inventory);
+        ItemWorld.SpawnItemWorld(new Vector3(-27, 6, 0), new Item { itemType = Item.ItemType.DamagePlus, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-27, 6, 0), new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
+
     }
 
     // Update is called once per frame
@@ -35,16 +42,17 @@ public class PlayerControl : MonoBehaviour
             player.Move(velocity * Time.deltaTime);
         }
 
-        if(player.isGrounded)
+        if (player.isGrounded)
             velocity.y = -1.0f;
 
         //Skok
-        if (Input.GetKey(KeyCode.Space) && player.isGrounded) {
+        if (Input.GetKey(KeyCode.Space) && player.isGrounded)
+        {
             velocity.y = Mathf.Sqrt(jumpPower * -2f * gravity);
         }
 
         //Sprint
-        if (Input.GetKeyDown(KeyCode.LeftShift) && player.isGrounded && playerStats.currStamina >10)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && player.isGrounded && playerStats.currStamina > 10)
         {
             speed *= 2;
             sprint = true;
