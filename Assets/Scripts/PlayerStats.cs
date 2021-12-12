@@ -23,6 +23,7 @@ public class PlayerStats : MonoBehaviour
     public int dexPerLv;
     public int gold;
 
+    public Quest quest;
     public PlayerControl playerControl;
     public PlayerHUD hud;
     private void Start()
@@ -36,9 +37,21 @@ public class PlayerStats : MonoBehaviour
     }
     private void Update()
     {
-        // Inputy tylko po to ¿eby sprawdziæ dzia³anie :)
+        // Inputy tylko po to ¿eby sprawdzaæ dzia³anie :)
         if (Input.GetKeyDown(KeyCode.T))
-            GetGold(10);
+        {   //sprawdzenie czy quest o typie kill dzia³a
+            if (quest.isActive && quest.goal.goalType == GoalType.kill ) 
+            {
+                quest.goal.currScore++;
+                if (quest.goal.currScore >= quest.goal.reqScore)
+                {
+                    quest.isActive = false;
+                    GetExp(quest.exp);
+                    GetGold(quest.gold);
+                    quest.Compleated();
+                }
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Y))
             SpendGold(10);
