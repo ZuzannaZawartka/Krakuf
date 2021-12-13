@@ -13,18 +13,22 @@ public class PlayerControl : MonoBehaviour
     private Inventory inventory;
     [SerializeField] private UI_Inventory ui_inventory;
     Vector3 velocity;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<CharacterController>();
         playerStats = GetComponent<PlayerStats>();
         inventory = new Inventory();
+        ui_inventory.SetPlayer(this);
         ui_inventory.SetInventory(inventory);
         ItemWorld.SpawnItemWorld(new Vector3(-27, 2, 0), new Item { itemType = Item.ItemType.Coin, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(-29, 2, 0), new Item { itemType = Item.ItemType.SpeedPlus, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-29, 2, 0), new Item { itemType = Item.ItemType.SpeedPlus, amount = 3 });
 
 
     }
+
+    //zbieranie itemów na trigger
     private void OnTriggerEnter(Collider other)
     {
         ItemWorld iWorld = other.gameObject.GetComponent<ItemWorld>();

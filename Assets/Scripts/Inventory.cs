@@ -9,16 +9,57 @@ public class Inventory
     public Inventory()
     {
         itemList = new List<Item>();
-     
-       
-        Debug.Log(itemList.Count);
     }
 
     //dodanie itemów do listy
     public void AddItem(Item item)
     {
-        itemList.Add(item);
+       
+        if (item.isStackable())
+        {
+            bool isInInventory = false;
+            foreach(Item inventoryItem in itemList)
+            {
+                if(inventoryItem.itemType == item.itemType)
+                {
+                    inventoryItem.amount += item.amount;
+                    isInInventory = true;
+                }
+            }
+            if (!isInInventory)
+            {
+                itemList.Add(item);
+            }
+        }
+        else
+        {
+            itemList.Add(item);
+        }
     }
+
+    /*public void RemoveItem(Item item) 
+    {
+        if (item.isStackable())
+        {
+            Item itemInInventory = null;
+            foreach (Item inventoryItem in itemList)
+            {
+                if (inventoryItem.itemType == item.itemType)
+                {
+                    inventoryItem.amount += item.amount;
+                    itemInInventory = inventoryItem;
+                }
+            }
+            if (itemInInventory !=null && itemInInventory.amount <= 0)
+            {
+                itemList.Remove(item);
+            }
+        }
+        else
+        {
+            itemList.Remove(item);
+        }
+    }*/
 
     //zwrócenie listy itemów 
     public List<Item> GetItemList()

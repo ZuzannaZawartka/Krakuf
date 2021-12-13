@@ -32,4 +32,9 @@ public class Item
         }
     }
 
+    public bool isStackable()
+    {
+        //wszystkie itemy maja mozliwosc stackowania
+        return true;
+    }
 }
