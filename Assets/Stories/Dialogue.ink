@@ -7,7 +7,7 @@ Za kim jesteś?
         -> chosen("Wisł")
     + [Cracovia]
         -> chosen("Cracovi")
-    + [Not]
+    + [Garbarnia]
         -> chosen("Garbarni")
         
 === chosen(club) ===
