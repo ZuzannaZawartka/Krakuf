@@ -9,7 +9,9 @@ public class Inventory
     public Inventory()
     {
         itemList = new List<Item>();
-        AddItem(new Item { itemType = Item.ItemType.Coin, amount = 1 });
+     
+       
+        Debug.Log(itemList.Count);
     }
 
     //dodanie itemów do listy

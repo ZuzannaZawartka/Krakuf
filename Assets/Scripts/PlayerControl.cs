@@ -20,9 +20,20 @@ public class PlayerControl : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         inventory = new Inventory();
         ui_inventory.SetInventory(inventory);
-        ItemWorld.SpawnItemWorld(new Vector3(-27, 6, 0), new Item { itemType = Item.ItemType.DamagePlus, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(-27, 6, 0), new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-27, 2, 0), new Item { itemType = Item.ItemType.Coin, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-29, 2, 0), new Item { itemType = Item.ItemType.SpeedPlus, amount = 1 });
 
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        ItemWorld iWorld = other.gameObject.GetComponent<ItemWorld>();
+        if (iWorld!= null)
+        {
+            inventory.AddItem(iWorld.GetItem());
+            iWorld.DestroySelf();
+            ui_inventory.RefreshInventory();
+        }
     }
 
     // Update is called once per frame
