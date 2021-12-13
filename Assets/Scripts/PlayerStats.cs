@@ -53,6 +53,11 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Q)) 
+        {
+            hud.OpenActiveQuest();
+        }
+
         if (Input.GetKeyDown(KeyCode.Y))
             SpendGold(10);
         
