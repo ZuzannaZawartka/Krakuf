@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     public bool sprint = false;
     private Inventory inventory;
     [SerializeField] private UI_Inventory ui_inventory;
+    [SerializeField] private PlayerHUD playerHud;
     Vector3 velocity;
 
     // Start is called before the first frame update
@@ -20,10 +21,15 @@ public class PlayerControl : MonoBehaviour
         player = GetComponent<CharacterController>();
         playerStats = GetComponent<PlayerStats>();
         inventory = new Inventory();
+      
         ui_inventory.SetPlayer(this);
         ui_inventory.SetInventory(inventory);
         ItemWorld.SpawnItemWorld(new Vector3(-27, 2, 0), new Item { itemType = Item.ItemType.Coin, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(-29, 2, 0), new Item { itemType = Item.ItemType.SpeedPlus, amount = 3 });
+        ItemWorld.SpawnItemWorld(new Vector3(-29, 2, 0), new Item { itemType = Item.ItemType.SpeedPlus, amount = 7 });
+        ItemWorld.SpawnItemWorld(new Vector3(-30, 2, 0), new Item { itemType = Item.ItemType.Coin, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-24, 2, 0), new Item { itemType = Item.ItemType.SpeedPlus, amount = 7 });
+        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 0), new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-28, 2, 0), new Item { itemType = Item.ItemType.DamagePlus, amount = 7 });
 
 
     }
@@ -36,7 +42,7 @@ public class PlayerControl : MonoBehaviour
         {
             inventory.AddItem(iWorld.GetItem());
             iWorld.DestroySelf();
-            ui_inventory.RefreshInventory();
+            //ui_inventory.RefreshInventory();
         }
     }
 
@@ -77,6 +83,12 @@ public class PlayerControl : MonoBehaviour
         {
             speed /= 2;
             sprint = false;
+        }
+
+        //otwieranie inventory
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            playerHud.OpenInventory();
         }
 
     }

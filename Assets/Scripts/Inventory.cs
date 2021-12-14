@@ -9,6 +9,7 @@ public class Inventory
     public Inventory()
     {
         itemList = new List<Item>();
+   
     }
 
     //dodanie itemów do listy
@@ -22,7 +23,7 @@ public class Inventory
             {
                 if(inventoryItem.itemType == item.itemType)
                 {
-                    inventoryItem.amount += item.amount;
+                   inventoryItem.amount += item.amount;
                     isInInventory = true;
                 }
             }
@@ -31,7 +32,7 @@ public class Inventory
                 itemList.Add(item);
             }
         }
-        else
+        else if(!item.isStackable())
         {
             itemList.Add(item);
         }

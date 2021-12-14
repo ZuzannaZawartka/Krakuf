@@ -9,12 +9,15 @@ public class UI_Inventory : MonoBehaviour
     private Inventory inventory;
     private Transform itemSlotContainer;
     private Transform itemSlotTemplate;
+    [SerializeField] private GameObject itemSlotTemplateG;
+    [SerializeField] private PlayerHUD playerHud;
     private PlayerControl player;
 
     private void Awake()
     {
         itemSlotContainer = transform.Find("itemSlotContainer");
         itemSlotTemplate = itemSlotContainer.Find("itemSlotTemplate");
+     
     }
 
     public void SetPlayer(PlayerControl player)
@@ -25,14 +28,19 @@ public class UI_Inventory : MonoBehaviour
     public void SetInventory(Inventory inventory)
     {
         this.inventory = inventory;
-       RefreshInventory();
+       //RefreshInventory();
     }
 
     public void RefreshInventory()
     {
+        foreach(Transform child in itemSlotContainer)
+        {
+            if (child == itemSlotTemplate) continue;
+            Destroy(child.gameObject);
+        }
         int x = -2;
-        int y = 1;
-        float itemSlotCellSize = 110;
+        int y = 0;
+        float itemSlotCellSize = 200;
         //generowanie template dla itemów w inventory 
         foreach (Item item in inventory.GetItemList())
         {
@@ -40,25 +48,21 @@ public class UI_Inventory : MonoBehaviour
             itemSlotRectTransform.gameObject.SetActive(true);
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
 
+            
             Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
             image.sprite = item.GetSprite();
             TextMeshProUGUI uiT = itemSlotRectTransform.Find("amount").GetComponent<TextMeshProUGUI>();
-            if(item.amount > 1)
+            TextMeshProUGUI uiType = itemSlotRectTransform.Find("type").GetComponent<TextMeshProUGUI>();
+            uiType.SetText(item.itemType.ToString());
+            if (item.amount > 1)
             {
                 uiT.SetText(item.amount.ToString());
             }
             else
             {
-                uiT.SetText("");
+                uiT.SetText(" ");
             }
             x++;
-            if (x >= 3)
-            {
-                x = -2;
-                y--;
-            }
-
-
         }
     }
 }
