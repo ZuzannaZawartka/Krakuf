@@ -20,6 +20,7 @@ public class QuestGiver : MonoBehaviour
     private void Start()
     {
         acceptButton = acceptButton.GetComponent<Button>();
+        rejectButton = rejectButton.GetComponent<Button>();
     }
 
     public void OpenQuestWindow()

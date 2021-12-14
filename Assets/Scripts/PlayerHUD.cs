@@ -69,6 +69,7 @@ public class PlayerHUD : MonoBehaviour
         manaBar.SetCurrentValue(currMana);
     }
 
+    
     public void OpenActiveQuest()
     {
         Cursor.lockState = CursorLockMode.None;
