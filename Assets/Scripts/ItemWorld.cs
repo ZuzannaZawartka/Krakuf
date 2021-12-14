@@ -39,4 +39,14 @@ public class ItemWorld : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+
+    //funkcja wyrzucenia itemu po kliknieciu
+   /* public void DropItem(Vector3 position,Item item)
+    {
+       
+        ItemWorld itemWorld = SpawnItemWorld(position + randomDir * 5f, item);
+        itemWorld.GetComponent<Rigidbody>().AddForce(randomDir *5f,ForceMode.Impulse);
+        return itemWorld;
+    }*/
 }

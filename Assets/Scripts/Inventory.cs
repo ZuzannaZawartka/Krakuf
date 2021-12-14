@@ -38,6 +38,7 @@ public class Inventory
         }
     }
 
+    //funkcja usuniecia itemu po wyrzuceniu z intentory
     /*public void RemoveItem(Item item) 
     {
         if (item.isStackable())
@@ -47,7 +48,7 @@ public class Inventory
             {
                 if (inventoryItem.itemType == item.itemType)
                 {
-                    inventoryItem.amount += item.amount;
+                    inventoryItem.amount -= item.amount;
                     itemInInventory = inventoryItem;
                 }
             }
