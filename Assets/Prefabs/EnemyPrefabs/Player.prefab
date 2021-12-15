@@ -2222,6 +2222,7 @@ Transform:
   m_Children:
   - {fileID: 1355643456047311111}
   - {fileID: 1355643455609043802}
+  - {fileID: 7199999786128124249}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2323,6 +2324,8 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   gravity: -40
   sprint: 0
+  ui_inventory: {fileID: 0}
+  playerHud: {fileID: 0}
 --- !u!114 &1355643455875560995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2366,6 +2369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10855aa2e25887040bedb27019ae7a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   playerClassText: {fileID: 1355643456251999022}
   levelText: {fileID: 1355643454226699919}
   maxExpText: {fileID: 1355643455447460987}
@@ -2380,6 +2384,18 @@ MonoBehaviour:
   staminaBar: {fileID: 1355643454891340985}
   manaBar: {fileID: 1355643454626015051}
   expBar: {fileID: 1355643455972441453}
+  activeQuestWindow: {fileID: 0}
+  giveUpButton: {fileID: 0}
+  titleText: {fileID: 0}
+  descryptionText: {fileID: 0}
+  expText: {fileID: 0}
+  goldText: {fileID: 0}
+  score: {fileID: 0}
+  rewards: {fileID: 0}
+  currScore: {fileID: 0}
+  reqScore: {fileID: 0}
+  uiInventory: {fileID: 0}
+  openedInventory: 0
 --- !u!114 &1355643455875561178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3332,6 +3348,105 @@ MonoBehaviour:
   ammo: 0
   fpsCamera: {fileID: 1355643456047311108}
   animator: {fileID: 0}
+--- !u!1 &3555004962377031943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7199999786128124249}
+  - component: {fileID: 2095510385509353195}
+  - component: {fileID: 7562726192177122241}
+  - component: {fileID: 2491166903636404158}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7199999786128124249
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555004962377031943}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1355643455875560997}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!223 &2095510385509353195
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555004962377031943}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &7562726192177122241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555004962377031943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!114 &2491166903636404158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555004962377031943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &1355643455369701135
 PrefabInstance:
   m_ObjectHideFlags: 0

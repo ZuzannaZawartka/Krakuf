@@ -33,13 +33,15 @@ public class PlayerHUD : MonoBehaviour
     public Text currScore;
     public Text reqScore;
 
+    [SerializeField] GameObject uiInventory;
+    public bool openedInventory;
     public void UpdatePlayerClass(string playerclass)
-    {   //wyúwietlanie klasy gracza 
+    {   //wy≈ìwietlanie klasy gracza 
         playerClassText.text = playerclass;
     }
 
     public void UpdateExp(int level, float currExp, float maxExp)
-    {   //Wyúwietlanie lv i expa gracza
+    {   //Wy≈ìwietlanie lv i expa gracza
         levelText.text = level.ToString();
         currExpText.text = currExp.ToString();
         maxExpText.text = maxExp.ToString();
@@ -47,29 +49,47 @@ public class PlayerHUD : MonoBehaviour
         expBar.SetCurrentValue(currExp);
     }
 
-    public void UpdateHP(float currHP, float maxHP) 
-    {   //Wyúwietlanie HP
+    public void UpdateHP(float currHP, float maxHP)
+    {   //Wy≈ìwietlanie HP
         currHPText.text = currHP.ToString();
         maxHPText.text = maxHP.ToString();
         hpBar.SetMaxValue(maxHP);
         hpBar.SetCurrentValue(currHP);
     }
     public void UpdateStamina(float currStamina, float maxStamina)
-    {   //Wyúwietlanie stanu staminy
+    {   //Wy≈ìwietlanie stanu staminy
         currStaminaText.text = currStamina.ToString();
         maxStaminaText.text = maxStamina.ToString();
         staminaBar.SetCurrentValue(currStamina);
         staminaBar.SetMaxValue(maxStamina);
     }
     public void UpdateMana(float currMana, float maxMana)
-    {   //Wyúwietlanie stanu many
+    {   //Wy≈ìwietlanie stanu many
         currManaText.text = currMana.ToString();
         maxManaText.text = maxMana.ToString();
         manaBar.SetMaxValue(maxMana);
         manaBar.SetCurrentValue(currMana);
     }
+    public void OpenInventory()
+    {
+        if (uiInventory.activeSelf)
+        {
+            uiInventory.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1;
+            openedInventory = false;
+        }
+        else
+        {
+            uiInventory.SetActive(true);
+            uiInventory.gameObject.GetComponent<UI_Inventory>().RefreshInventory();
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0;
+            openedInventory = true;
+            
+        }
+    }
 
-    
     public void OpenActiveQuest()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -77,7 +97,7 @@ public class PlayerHUD : MonoBehaviour
         if (!player.quest.isActive)
         {
             titleText.text = "Brak zadnia";
-            descryptionText.text = "Nie masz aktualnie øadnej misji od wykonania";
+            descryptionText.text = "Nie masz aktualnie ¬øadnej misji od wykonania";
             score.SetActive(false);
             rewards.SetActive(false);
 
