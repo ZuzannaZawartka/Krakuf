@@ -21,7 +21,9 @@ public class PlayerStats : MonoBehaviour
     public int strPerLv;
     public int intelPerLv;
     public int dexPerLv;
+    public int gold;
 
+    public Quest quest;
     public PlayerControl playerControl;
     public PlayerHUD hud;
     private void Start()
@@ -35,12 +37,29 @@ public class PlayerStats : MonoBehaviour
     }
     private void Update()
     {
-        // Inputy tylko po to ¿eby sprawdziæ dzia³anie :)
+        // Inputy tylko po to ¿eby sprawdzaæ dzia³anie :)
         if (Input.GetKeyDown(KeyCode.T))
-            TakeDamage(10);
+        {   //sprawdzenie czy quest o typie kill dzia³a
+            if (quest.isActive && quest.goal.goalType == GoalType.kill ) 
+            {
+                quest.goal.currScore++;
+                if (quest.goal.currScore >= quest.goal.reqScore)
+                {
+                    quest.isActive = false;
+                    GetExp(quest.exp);
+                    GetGold(quest.gold);
+                    quest.Compleated();
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q)) 
+        {
+            hud.OpenActiveQuest();
+        }
 
         if (Input.GetKeyDown(KeyCode.Y))
-            Heal(10);
+            SpendGold(10);
         
         if (Input.GetKeyDown(KeyCode.G)) 
             GetExp(60);
@@ -148,6 +167,17 @@ public class PlayerStats : MonoBehaviour
             CheckExp();
         }
     }
+    public void GetGold(int earnGold)
+    {   // Funkcja gdy zarobimy golda 
+        gold += earnGold;
+    }
+    public void SpendGold(int lostGold)
+    {   // Funkcja gdy tracimy golda/kupujemy itemy
+        if (gold >= lostGold)
+            gold -= lostGold;
+        else
+            Debug.Log("Nie staæ ciê :P");
+    }
     public void SetClass()
     {   //Ustawiane klasy na podstawie wygoru gracza ze sceny ClassSelector
         playerControl = GetComponent<PlayerControl>();
@@ -199,5 +229,7 @@ public class PlayerStats : MonoBehaviour
 
         maxMana = 100;
         currMana = maxMana;
+
+        gold = 10;
     }
 }
