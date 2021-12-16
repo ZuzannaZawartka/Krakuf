@@ -22,6 +22,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     private float nextTime = 0f;
     [SerializeField] private Animator animator;
+    [SerializeField] private PlayerStats pS;
 
     private void Start()
     {
@@ -67,11 +68,21 @@ public class Gun : MonoBehaviour
         {
             Debug.DrawRay(transform.position,transform.forward * 1000, Color.cyan);
             Target target = hit.transform.GetComponent<Target>();
-          
+
+            //zdaanie obra¿eñ
             if (target != null)
             {
-                //zdaanie obra¿eñ
-                target.Damage(damage);
+                //zadanie obrazen zaleznie od statystki, jesli range mniejszy niz 10 wtedy jest to maczeta
+                if(range > 10)
+                {
+                    //pistolet
+                    target.Damage(2 * pS.dex + 0.2f * pS.str + 0.2f * pS.intel);
+                }
+                else
+                {
+                    //maczeta
+                    target.Damage(2.5f * pS.str + 0.2f * pS.dex + 0.2f * pS.intel);
+                }
                 
             }
             if (hit.rigidbody != null)
