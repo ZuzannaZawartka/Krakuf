@@ -9,6 +9,7 @@ public class Target : MonoBehaviour
     public float health;
     public float gainExp;
     public float damege;
+    public int id;
 
     private void Start()
     {
@@ -26,13 +27,23 @@ public class Target : MonoBehaviour
        
         if (health <= 0)
         {
-            
             Die();
         }
     }
     void Die()
     {
-      playerStats.GetExp(gainExp);
+        playerStats.GetExp(gainExp);
+        if (playerStats.quest.isActive)
+        {
+            playerStats.quest.goal.KillEnemy(id);
+            if (playerStats.quest.goal.currScore >= playerStats.quest.goal.reqScore)
+            {
+                playerStats.quest.isActive = false;
+                playerStats.GetExp(playerStats.quest.exp);
+                playerStats.GetGold(playerStats.quest.gold);
+                playerStats.quest.Compleated();
+            }
+        }
         Destroy(gameObject);
     }
 }
