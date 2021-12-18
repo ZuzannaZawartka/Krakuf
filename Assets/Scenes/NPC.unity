@@ -1861,6 +1861,7 @@ MonoBehaviour:
   ammo: 0
   fpsCamera: {fileID: 1777062854}
   animator: {fileID: 0}
+  pS: {fileID: 0}
 --- !u!65 &1076912306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3468,6 +3469,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649928248}
   m_CullTransparentMesh: 1
+--- !u!1 &1661425754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1661425755}
+  m_Layer: 0
+  m_Name: Dialogue Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1661425755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661425754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 498.96494, y: 348.43973, z: -1040.9344}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687155646
 GameObject:
   m_ObjectHideFlags: 0
@@ -3503,6 +3534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10855aa2e25887040bedb27019ae7a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   playerClassText: {fileID: 1962568997}
   levelText: {fileID: 1836466073}
   maxExpText: {fileID: 320657391}
@@ -3517,6 +3549,18 @@ MonoBehaviour:
   staminaBar: {fileID: 2012595864}
   manaBar: {fileID: 422957020}
   expBar: {fileID: 564216628}
+  activeQuestWindow: {fileID: 0}
+  giveUpButton: {fileID: 0}
+  titleText: {fileID: 0}
+  descryptionText: {fileID: 0}
+  expText: {fileID: 0}
+  goldText: {fileID: 0}
+  score: {fileID: 0}
+  rewards: {fileID: 0}
+  currScore: {fileID: 0}
+  reqScore: {fileID: 0}
+  uiInventory: {fileID: 0}
+  openedInventory: 0
 --- !u!114 &1687155648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3553,6 +3597,11 @@ MonoBehaviour:
     description: 
     exp: 0
     gold: 0
+    goal:
+      goalType: 0
+      currScore: 0
+      reqScore: 0
+      id: 0
   playerControl: {fileID: 1687155649}
   hud: {fileID: 0}
 --- !u!114 &1687155649
@@ -3573,6 +3622,8 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   gravity: -40
   sprint: 0
+  ui_inventory: {fileID: 0}
+  playerHud: {fileID: 0}
 --- !u!143 &1687155650
 CharacterController:
   m_ObjectHideFlags: 0
