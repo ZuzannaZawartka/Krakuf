@@ -27,7 +27,7 @@ public class NavMeshController : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        if(agent.remainingDistance < 0.5)
+        if(agent.remainingDistance < 0.5 && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
             agent.SetDestination(waypointy.GetChild(Where()).transform.position); // Jeœli npc doszed³ do celu, wywo³aj funckjê where (co i  gdzie ma npc robiæ)
             //Debug.Log(agent.destination);
