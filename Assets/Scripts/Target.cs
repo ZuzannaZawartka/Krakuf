@@ -36,9 +36,8 @@ public class Target : MonoBehaviour
         if (playerStats.quest.isActive)
         {
             playerStats.quest.goal.KillEnemy(id);
-            if (playerStats.quest.goal.currScore >= playerStats.quest.goal.reqScore)
+            if (playerStats.quest.goal.IsComplited())
             {
-                playerStats.quest.isActive = false;
                 playerStats.GetExp(playerStats.quest.exp);
                 playerStats.GetGold(playerStats.quest.gold);
                 playerStats.quest.Compleated();

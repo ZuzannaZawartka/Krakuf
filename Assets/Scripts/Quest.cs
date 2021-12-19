@@ -7,6 +7,7 @@ public class Quest
 {
     //zmienne ktore ma kazdy quest, w skrypcie questgiver wypisuje je w UI
     public bool isActive;
+    public int questId;
     public string title;
     public string description;
     public int exp;

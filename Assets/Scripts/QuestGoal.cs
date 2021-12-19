@@ -24,11 +24,17 @@ public class QuestGoal
         if (goalType == GoalType.collect && id==ItemId)
             currScore++;
     }
+    public void Talk(int npcId) 
+    {
+        if (goalType == GoalType.talk && id == npcId)
+            currScore=reqScore;
+    }
 
 }
 
 public enum GoalType 
 {   //typy questów
     kill,
-    collect
+    collect,
+    talk
 }
