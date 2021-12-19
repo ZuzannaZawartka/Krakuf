@@ -49,6 +49,12 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
+
         //Poruszanie sie WASD
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
