@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour
         ui_inventory.SetInventory(inventory);
         ItemWorld.SpawnItemWorld(new Vector3(-27, 2, 0), new Item { itemType = Item.ItemType.Coin, amount = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(-29, 2, 0), new Item { itemType = Item.ItemType.SpeedPlus, amount = 7 });
-        ItemWorld.SpawnItemWorld(new Vector3(-30, 2, 0), new Item { itemType = Item.ItemType.Coin, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-30, 2, 0), new Item { itemType = Item.ItemType.Coin, amount = 3 });
         ItemWorld.SpawnItemWorld(new Vector3(-24, 2, 0), new Item { itemType = Item.ItemType.SpeedPlus, amount = 7 });
         ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 0), new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(-28, 2, 0), new Item { itemType = Item.ItemType.DamagePlus, amount = 7 });
@@ -36,11 +36,21 @@ public class PlayerControl : MonoBehaviour
 
     //zbieranie itemów na trigger
     private void OnTriggerEnter(Collider other)
-    {
+    {   //zbieranie przedmiotów
         ItemWorld iWorld = other.gameObject.GetComponent<ItemWorld>();
         if (iWorld!= null)
-        {
+        {   //dodawanie ich do invertory
             inventory.AddItem(iWorld.GetItem());
+            if (playerStats.quest.isActive)
+            {   //jesli quest jest aktywny dodawnie postêpów i czy jest ukonczony
+                playerStats.quest.goal.CollectItems(iWorld.GetItem().itemType.ToString(), iWorld.GetItem().amount);
+                if (playerStats.quest.goal.IsComplited())
+                {   //jesli zbierzemy odpowiednia ilosc itemow koczmy questa, dostajemy exp, golda i oznaczamy jako nieaktywnego
+                    playerStats.GetExp(playerStats.quest.exp);
+                    playerStats.GetGold(playerStats.quest.gold);
+                    playerStats.quest.Compleated();
+                }
+            }
             iWorld.DestroySelf();
             //ui_inventory.RefreshInventory();
         }

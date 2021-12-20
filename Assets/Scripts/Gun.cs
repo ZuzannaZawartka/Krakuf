@@ -48,7 +48,14 @@ public class Gun : MonoBehaviour
         {
             Shoot();
         }
-     
+        if (range > 10)
+        {
+            hud.ammoViec.SetActive(true);
+            hud.UpdateAmmo(currentAmmo, maxAmmo);
+        }
+        else
+            hud.ammoViec.SetActive(false);
+
     }
 
 

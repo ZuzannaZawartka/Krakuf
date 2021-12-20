@@ -23,6 +23,7 @@ public class GrenadeThrow : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && Time.time >= nextTime && playerStats.currMana>=40)
         {
             nextTime = Time.time + 4f / fireRate;
+            damage = 2 * playerStats.intel + 0.1f * playerStats.dex + 0.3f * playerStats.str;
             ThrowGrenade();
             playerStats.UseMagic(40f);
         }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4783065954213514644}
   - component: {fileID: 4783065954213514647}
   - component: {fileID: 4783065954213514643}
+  - component: {fileID: -6424409148905908993}
   m_Layer: 0
   m_Name: ItemWorld 1
   m_TagString: Untagged
@@ -126,3 +127,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248b113c28a0535468dc053fc7d7a875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6424409148905908993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783065954213514646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c207878853a8554bbb10a8bcd0d90a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}

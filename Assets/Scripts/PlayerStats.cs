@@ -157,7 +157,7 @@ public class PlayerStats : MonoBehaviour
         {
             level += 1;
             currExp -= maxExp;
-            maxExp = 300 * level;
+            maxExp += 150;
             str += strPerLv;
             intel += intelPerLv;
             dex += dexPerLv;
@@ -217,7 +217,7 @@ public class PlayerStats : MonoBehaviour
         }
 
         level = 1;
-        maxExp = 200;
+        maxExp = 300;
         currExp = 0;
 
         maxHP = 100;

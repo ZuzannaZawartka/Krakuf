@@ -49,7 +49,7 @@ public class Grenade : MonoBehaviour
             if (tar != null)
             {
                // Destroy(tar.gameObject);
-                tar.Damage(2 * pS.intel + 0.1f * pS.dex + 0.3f * pS.str);
+                tar.Damage(damage);
             }
         }
         Collider[] collidersToMove = Physics.OverlapSphere(transform.position, vect);
