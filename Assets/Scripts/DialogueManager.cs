@@ -21,6 +21,8 @@ public class DialogueManager : MonoBehaviour
 
     public bool dialogueIsPlaying { get; private set; }
 
+    public QuestGiver funkcja;
+
     private static DialogueManager instance;
 
     private void Awake()
@@ -76,7 +78,6 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator ExitDialogueMode()
     {
         yield return new WaitForSeconds(0.2f);
-
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "Ej masz problem?";
@@ -131,5 +132,9 @@ public class DialogueManager : MonoBehaviour
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
+        if (choiceIndex == 1)
+        {
+            funkcja.OpenQuestWindow();
+        }
     }
 }

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 3ebf1a3c2f1a85c44886e0c7cc814ba2
+  - enabled: 1
+    path: Assets/Scenes/ClassSelection.unity
+    guid: b7a7f10bb4d7cfe48b56f7921534b815
   m_configObjects: {}
