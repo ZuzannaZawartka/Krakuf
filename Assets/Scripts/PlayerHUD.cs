@@ -21,6 +21,9 @@ public class PlayerHUD : MonoBehaviour
     public Bar staminaBar;
     public Bar manaBar;
     public Bar expBar;
+    public GameObject ammoViec;
+    public Text maxAmmoText;
+    public Text currAmmoText;
 
     public GameObject activeQuestWindow;
     public Button giveUpButton;
@@ -70,6 +73,11 @@ public class PlayerHUD : MonoBehaviour
         manaBar.SetMaxValue(maxMana);
         manaBar.SetCurrentValue(currMana);
     }
+    public void UpdateAmmo(int currAmmo, int maxAmmo)
+    {   //Wyœwietlanie stanu amunicji
+        currAmmoText.text = currAmmo.ToString();
+        maxAmmoText.text = maxAmmo.ToString();
+    }
     public void OpenInventory()
     {
         if (uiInventory.activeSelf)
@@ -100,8 +108,6 @@ public class PlayerHUD : MonoBehaviour
             descryptionText.text = "Nie masz aktualnie ¿adnej misji od wykonania";
             score.SetActive(false);
             rewards.SetActive(false);
-
-
         }
         else if (player.quest.isActive) 
         {

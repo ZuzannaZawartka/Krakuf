@@ -408,6 +408,7 @@ MonoBehaviour:
   exEffect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
   force: 700
   vect: 5
+  pS: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
 --- !u!1 &8416272007918961125
 GameObject:
   m_ObjectHideFlags: 0

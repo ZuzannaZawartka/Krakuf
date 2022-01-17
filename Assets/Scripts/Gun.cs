@@ -23,6 +23,7 @@ public class Gun : MonoBehaviour
     private float nextTime = 0f;
     [SerializeField] private Animator animator;
     [SerializeField] private PlayerStats pS;
+    [SerializeField] private PlayerHUD hud;
 
     private void Start()
     {
@@ -47,7 +48,14 @@ public class Gun : MonoBehaviour
         {
             Shoot();
         }
-     
+        if (range > 10)
+        {
+            hud.ammoViec.SetActive(true);
+            hud.UpdateAmmo(currentAmmo, maxAmmo);
+        }
+        else
+            hud.ammoViec.SetActive(false);
+
     }
 
 
@@ -64,6 +72,7 @@ public class Gun : MonoBehaviour
         //muzzleShot.Play();
         RaycastHit hit;
         --currentAmmo;
+        hud.UpdateAmmo(currentAmmo, maxAmmo);
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.TransformDirection(Vector3.forward), out hit, range)) 
         {
             Debug.DrawRay(transform.position,transform.forward * 1000, Color.cyan);
@@ -103,8 +112,7 @@ public class Gun : MonoBehaviour
         
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = maxAmmo;
+        hud.UpdateAmmo(currentAmmo, maxAmmo);
         isReloading = false;
     }
-
-
 }

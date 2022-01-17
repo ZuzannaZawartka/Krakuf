@@ -166,6 +166,7 @@ MonoBehaviour:
   health: 100
   gainExp: 0
   damege: 0
+  id: 0
 --- !u!64 &8846804075101378520
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -383,6 +384,7 @@ GameObject:
   - component: {fileID: 3348165940893069138}
   - component: {fileID: 388441842758929312}
   - component: {fileID: 6049396793695135686}
+  - component: {fileID: 8571620192781878799}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -471,6 +473,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8571620192781878799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147537640821980478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c207878853a8554bbb10a8bcd0d90a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
 --- !u!64 &6330773634103364210
 MeshCollider:
   m_ObjectHideFlags: 0

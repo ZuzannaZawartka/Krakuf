@@ -15,7 +15,7 @@ MonoBehaviour:
   throwForce: 40
   grenadePrefabs: {fileID: 4379412334719526645, guid: e77ebf50218c0ea4b9b7149eec7b4bbd, type: 3}
   fireRate: 15
-  playerStats: {fileID: 0}
+  playerStats: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
   player: {fileID: 1355643455875561005, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
   damage: 50
 --- !u!1001 &1983466397375483720

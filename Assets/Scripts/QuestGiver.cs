@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class QuestGiver : MonoBehaviour
-{
-
+{   //skrypt zadawany na npc który ma dawaæ questa graczowi
     public Quest quest;
     public PlayerStats player;
 

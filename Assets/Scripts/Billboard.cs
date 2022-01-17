@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Billboard : MonoBehaviour
-{
-    public Transform camera;
+{   //skrypt odpoweidzialny za zwracanie siê spritow/ obiektów w strone gracza
+    new public Transform camera;
     // Update is called once per frame
     private void Start()
     {

@@ -23,6 +23,8 @@ public class PlayerStats : MonoBehaviour
     public int dexPerLv;
     public int gold;
 
+    public GameObject deadScrean;
+
     public Quest quest;
     public PlayerControl playerControl;
     public PlayerHUD hud;
@@ -93,7 +95,17 @@ public class PlayerStats : MonoBehaviour
     public void Dead()
     {   //Funkcja ktora wykonuje siê gdy gracz umrze
         Debug.Log("Game Over!");
+        Cursor.lockState = CursorLockMode.None;
+        deadScrean.SetActive(true);
         isDead = true;
+    }
+
+    public void Restart() 
+    {
+        deadScrean.SetActive(false);
+        SetVariables();
+        Cursor.lockState = CursorLockMode.Locked;
+        gameObject.transform.position = new Vector3(0, 0, 0);
     }
 
     public void CheckStamina()
@@ -157,7 +169,7 @@ public class PlayerStats : MonoBehaviour
         {
             level += 1;
             currExp -= maxExp;
-            maxExp = 300 * level;
+            maxExp += 150;
             str += strPerLv;
             intel += intelPerLv;
             dex += dexPerLv;
@@ -217,7 +229,7 @@ public class PlayerStats : MonoBehaviour
         }
 
         level = 1;
-        maxExp = 200;
+        maxExp = 300;
         currExp = 0;
 
         maxHP = 100;
