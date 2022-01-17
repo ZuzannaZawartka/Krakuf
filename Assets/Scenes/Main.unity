@@ -2014,6 +2014,7 @@ MonoBehaviour:
   descryptionText: {fileID: 1727846405}
   expText: {fileID: 805375620}
   goldText: {fileID: 679908434}
+  isWindowActive: 0
 --- !u!82 &1623958643
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2187,6 +2188,7 @@ MonoBehaviour:
   - {fileID: 1355643455164826460}
   - {fileID: 1355643455164826459}
   funkcja: {fileID: 1916682853}
+  choiceRemember: 0
 --- !u!4 &1749800887
 Transform:
   m_ObjectHideFlags: 0
@@ -2454,6 +2456,7 @@ MonoBehaviour:
   descryptionText: {fileID: 1727846405}
   expText: {fileID: 805375620}
   goldText: {fileID: 679908434}
+  isWindowActive: 0
 --- !u!1 &1920055757 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1688617927700330159, guid: 6f2a1faa3c7eef34ebbb8398ef75ef2c, type: 3}
@@ -2939,6 +2942,14 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontStyle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560992, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: NPC
+      value: 
+      objectReference: {fileID: 1916682845}
+    - target: {fileID: 1355643455875560992, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: okno
+      value: 
+      objectReference: {fileID: 496228220}
     - target: {fileID: 1355643455875560992, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: playerHud
       value: 

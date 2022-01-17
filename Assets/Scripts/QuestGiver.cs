@@ -15,6 +15,7 @@ public class QuestGiver : MonoBehaviour
     public Text descryptionText;
     public Text expText;
     public Text goldText;
+    public bool isWindowActive = false;
 
     private void Start()
     {
@@ -34,11 +35,13 @@ public class QuestGiver : MonoBehaviour
         rejectButton.onClick.RemoveAllListeners();
         rejectButton.onClick.AddListener(CloserQuestWindow);
         questWindow.SetActive(true);
+        isWindowActive = true;
     }
     public void CloserQuestWindow()
     {   //Zamykanie okna questów
         Cursor.lockState = CursorLockMode.Locked;
         questWindow.SetActive(false);
+        isWindowActive = false;
     }
     public void AcceptQuest() 
     {   //Akceptacja questa, przypisanie go do gracza i zamkniêcie okna
