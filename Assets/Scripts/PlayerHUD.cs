@@ -102,23 +102,23 @@ public class PlayerHUD : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         activeQuestWindow.SetActive(true);
-        if (!player.quest.isActive)
+        if (!player.quests[0].isActive)
         {
             titleText.text = "Brak zadnia";
             descryptionText.text = "Nie masz aktualnie ¿adnej misji od wykonania";
             score.SetActive(false);
             rewards.SetActive(false);
         }
-        else if (player.quest.isActive) 
+        else if (player.quests[0].isActive) 
         {
-            titleText.text = player.quest.title;
-            descryptionText.text = player.quest.description;
+            titleText.text = player.quests[0].title;
+            descryptionText.text = player.quests[0].description;
             score.SetActive(true);
             rewards.SetActive(true);
-            goldText.text = player.quest.gold.ToString();
-            expText.text = player.quest.exp.ToString();
-            reqScore.text = player.quest.goal.reqScore.ToString();
-            currScore.text = player.quest.goal.currScore.ToString();
+            goldText.text = player.quests[0].gold.ToString();
+            expText.text = player.quests[0].exp.ToString();
+            reqScore.text = player.quests[0].goal.reqScore.ToString();
+            currScore.text = player.quests[0].goal.currScore.ToString();
 
         }
 
@@ -130,7 +130,7 @@ public class PlayerHUD : MonoBehaviour
     }
     public void GiveUPQuest()
     {
-        player.quest.isActive = false;
+        player.quests[1].isActive = false;
         OpenActiveQuest();
     }
 }

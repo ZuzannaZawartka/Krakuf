@@ -41,9 +41,29 @@ public class QuestGiver : MonoBehaviour
         questWindow.SetActive(false);
     }
     public void AcceptQuest() 
-    {   //Akceptacja questa, przypisanie go do gracza i zamkniêcie okna
-        quest.isActive = true;
-        player.quest = quest;
-        CloserQuestWindow(); 
+    {   
+        bool cantake = true;
+
+        if (player.quests.Count > 0)
+            for (int i = 0; i < player.quests.Count; i++)
+            {
+                if(player.quests[i].title == quest.title)
+                    cantake = false;
+            }
+        else
+            cantake = true;
+
+        if (cantake)
+        {
+            quest.isActive = true;
+            player.quests.Add(quest);
+            CloserQuestWindow();
+        }
+        else 
+        {
+            Debug.Log("masz juz tego questa");
+            CloserQuestWindow();
+        }
+
     }
 }

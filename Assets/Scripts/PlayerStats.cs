@@ -25,7 +25,7 @@ public class PlayerStats : MonoBehaviour
 
     public GameObject deadScrean;
 
-    public Quest quest;
+    public List<Quest> quests;
     public PlayerControl playerControl;
     public PlayerHUD hud;
     private void Start()
@@ -42,15 +42,15 @@ public class PlayerStats : MonoBehaviour
         // Inputy tylko po to ¿eby sprawdzaæ dzia³anie :)
         if (Input.GetKeyDown(KeyCode.T))
         {   //sprawdzenie czy quest o typie kill dzia³a
-            if (quest.isActive && quest.goal.goalType == GoalType.kill ) 
+            if (quests[1].isActive && quests[1].goal.goalType == GoalType.kill ) 
             {
-                quest.goal.currScore++;
-                if (quest.goal.currScore >= quest.goal.reqScore)
+                quests[1].goal.currScore++;
+                if (quests[1].goal.currScore >= quests[1].goal.reqScore)
                 {
-                    quest.isActive = false;
-                    GetExp(quest.exp);
-                    GetGold(quest.gold);
-                    quest.Compleated();
+                    quests[1].isActive = false;
+                    GetExp(quests[1].exp);
+                    GetGold(quests[1].gold);
+                    quests[1].Compleated();
                 }
             }
         }
@@ -97,15 +97,21 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("Game Over!");
         Cursor.lockState = CursorLockMode.None;
         deadScrean.SetActive(true);
+        transform.position = new Vector3(0, 3, 0);
         isDead = true;
     }
 
     public void Restart() 
     {
+        isDead = false;
+        Cursor.lockState = CursorLockMode.Locked;
         deadScrean.SetActive(false);
         SetVariables();
-        Cursor.lockState = CursorLockMode.Locked;
-        gameObject.transform.position = new Vector3(0, 0, 0);
+        CheckExp();
+        CheckHP();
+        CheckStamina();
+        CheckMana();
+
     }
 
     public void CheckStamina()

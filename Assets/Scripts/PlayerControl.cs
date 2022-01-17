@@ -41,14 +41,20 @@ public class PlayerControl : MonoBehaviour
         if (iWorld!= null)
         {   //dodawanie ich do invertory
             inventory.AddItem(iWorld.GetItem());
-            if (playerStats.quest.isActive)
-            {   //jesli quest jest aktywny dodawnie postêpów i czy jest ukonczony
-                playerStats.quest.goal.CollectItems(iWorld.GetItem().itemType.ToString(), iWorld.GetItem().amount);
-                if (playerStats.quest.goal.IsComplited())
-                {   //jesli zbierzemy odpowiednia ilosc itemow koczmy questa, dostajemy exp, golda i oznaczamy jako nieaktywnego
-                    playerStats.GetExp(playerStats.quest.exp);
-                    playerStats.GetGold(playerStats.quest.gold);
-                    playerStats.quest.Compleated();
+            if (playerStats.quests.Count >0)
+            {   //jesli lista questow nie jest pusta 
+                for (int i = 0; i < playerStats.quests.Count; i++)
+                {   //wywolywanie funkcji ospowiadajacej za postep w zbiraniu przedmiotów (ona sama sprawdza czy typ questu jest odpowiedni)
+                    playerStats.quests[i].goal.CollectItems(iWorld.GetItem().itemType.ToString(), iWorld.GetItem().amount);
+                    if (playerStats.quests[i].goal.IsComplited())
+                    {   //jesli quest wykonany 
+                        playerStats.GetExp(playerStats.quests[i].exp);
+                        playerStats.GetGold(playerStats.quests[i].gold);
+                        playerStats.quests[i].Compleated();
+                        playerStats.quests.Remove(playerStats.quests[i]);
+                        if (i >= 0 && playerStats.quests.Count > 0) // poniewaz po usuniêciu czegos z listy nastepuje przesuniêcie aby zape³niæ usuniêty index
+                            i--;
+                    }
                 }
             }
             iWorld.DestroySelf();

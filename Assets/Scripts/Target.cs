@@ -33,16 +33,25 @@ public class Target : MonoBehaviour
     void Die()
     {
         playerStats.GetExp(gainExp);
-        if (playerStats.quest.isActive)
+
+        if (playerStats.quests.Count > 0)
         {
-            playerStats.quest.goal.KillEnemy(id);
-            if (playerStats.quest.goal.IsComplited())
+            for (int i= 0; i< playerStats.quests.Count; i++ ) 
             {
-                playerStats.GetExp(playerStats.quest.exp);
-                playerStats.GetGold(playerStats.quest.gold);
-                playerStats.quest.Compleated();
+                playerStats.quests[i].goal.KillEnemy(id);
+                if (playerStats.quests[i].goal.IsComplited())
+                {
+                    playerStats.GetExp(playerStats.quests[i].exp);
+                    playerStats.GetGold(playerStats.quests[i].gold);
+                    playerStats.quests[i].Compleated();
+                    playerStats.quests.Remove(playerStats.quests[i]);
+                    if (i >= 0 && playerStats.quests.Count>0)  // poniewaz po usuniêciu czegos z listy nastepuje przesuniêcie aby zape³niæ usuniêty index
+                        i--;
+
+                }
             }
         }
+
         Destroy(gameObject);
     }
 }

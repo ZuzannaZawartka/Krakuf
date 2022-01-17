@@ -2944,6 +2944,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2024617363}
     - target: {fileID: 1355643455875560992, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 610401908}
+    - target: {fileID: 1355643455875560992, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: ui_inventory
       value: 
       objectReference: {fileID: 770165019}
@@ -2984,6 +2988,10 @@ PrefabInstance:
       value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: quest.goal.goalType
       value: 1
       objectReference: {fileID: 0}
@@ -2994,6 +3002,70 @@ PrefabInstance:
     - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: quest.goal.reqScore
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].exp
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[1].exp
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].gold
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[1].gold
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].title
+      value: 'Pierwszy '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[1].title
+      value: 'Drugi '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].questId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[1].questId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].isActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[1].isActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].description
+      value: 'Pierwszy quest z listy '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[1].description
+      value: 'Drugi quest z listy '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].goal.reqScore
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[1].goal.goalType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[1].goal.itemType
+      value: Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[1].goal.reqScore
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1355643455875560997, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: m_RootOrder
