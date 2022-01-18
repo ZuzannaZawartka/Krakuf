@@ -27,17 +27,22 @@ public class PlayerHUD : MonoBehaviour
 
     public GameObject activeQuestWindow;
     public Button giveUpButton;
+    public Button previousQuest;
+    public Button nextQuest;
     public Text titleText;
     public Text descryptionText;
     public Text expText;
     public Text goldText;
     public GameObject score;
     public GameObject rewards;
+    public GameObject arrows;
     public Text currScore;
     public Text reqScore;
 
     [SerializeField] GameObject uiInventory;
     public bool openedInventory;
+
+    public int visibleQuestIndex = 0;
     public void UpdatePlayerClass(string playerclass)
     {   //wyœwietlanie klasy gracza 
         playerClassText.text = playerclass;
@@ -102,23 +107,30 @@ public class PlayerHUD : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         activeQuestWindow.SetActive(true);
-        if (!player.quests[0].isActive)
+        if (player.quests.Count == 0)
         {
-            titleText.text = "Brak zadnia";
-            descryptionText.text = "Nie masz aktualnie ¿adnej misji od wykonania";
+            titleText.text = "Brak zadań";
+            descryptionText.text = "Nie masz aktualnie żadnych misji od wykonania";
             score.SetActive(false);
             rewards.SetActive(false);
+            arrows.SetActive(false);
+            
         }
-        else if (player.quests[0].isActive) 
+        else 
         {
-            titleText.text = player.quests[0].title;
-            descryptionText.text = player.quests[0].description;
+            titleText.text = player.quests[visibleQuestIndex].title;
+            descryptionText.text = player.quests[visibleQuestIndex].description;
             score.SetActive(true);
             rewards.SetActive(true);
-            goldText.text = player.quests[0].gold.ToString();
-            expText.text = player.quests[0].exp.ToString();
-            reqScore.text = player.quests[0].goal.reqScore.ToString();
-            currScore.text = player.quests[0].goal.currScore.ToString();
+            if (player.quests.Count == 1)
+                arrows.SetActive(false);
+            else
+                arrows.SetActive(true);
+
+            goldText.text = player.quests[visibleQuestIndex].gold.ToString();
+            expText.text = player.quests[visibleQuestIndex].exp.ToString();
+            reqScore.text = player.quests[visibleQuestIndex].goal.reqScore.ToString();
+            currScore.text = player.quests[visibleQuestIndex].goal.currScore.ToString();
 
         }
 
@@ -130,7 +142,26 @@ public class PlayerHUD : MonoBehaviour
     }
     public void GiveUPQuest()
     {
-        player.quests[1].isActive = false;
+        player.quests.Remove(player.quests[visibleQuestIndex]);
+        if (visibleQuestIndex != 0)
+            visibleQuestIndex--;
+        OpenActiveQuest();
+    }
+    public void NextQuest() 
+    {
+        if (visibleQuestIndex == player.quests.Count - 1)
+            visibleQuestIndex = 0;
+        else
+            visibleQuestIndex++;
+        OpenActiveQuest();
+    }
+
+    public void PreviousQuest()
+    {
+        if (visibleQuestIndex == 0)
+            visibleQuestIndex = player.quests.Count - 1;
+        else
+            visibleQuestIndex--;
         OpenActiveQuest();
     }
 }
