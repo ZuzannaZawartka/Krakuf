@@ -25,6 +25,8 @@ public class DialogueManager : MonoBehaviour
 
     private static DialogueManager instance;
 
+    public int choiceRemember;
+
     private void Awake()
     {
         if (instance != null)
@@ -78,6 +80,10 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator ExitDialogueMode()
     {
         yield return new WaitForSeconds(0.2f);
+        if (choiceRemember == 1)
+        {
+            funkcja.OpenQuestWindow();
+        }
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "Ej masz problem?";
@@ -131,10 +137,7 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)
     {
+        choiceRemember = choiceIndex;
         currentStory.ChooseChoiceIndex(choiceIndex);
-        if (choiceIndex == 1)
-        {
-            funkcja.OpenQuestWindow();
-        }
     }
 }

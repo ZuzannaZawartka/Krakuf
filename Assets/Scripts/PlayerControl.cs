@@ -14,6 +14,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private UI_Inventory ui_inventory;
     [SerializeField] private PlayerHUD playerHud;
     Vector3 velocity;
+    public GameObject okno;
+    public bool activeWindow;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class PlayerControl : MonoBehaviour
         player = GetComponent<CharacterController>();
         playerStats = GetComponent<PlayerStats>();
         inventory = new Inventory();
+        activeWindow = okno.activeSelf;
       
         ui_inventory.SetPlayer(this);
         ui_inventory.SetInventory(inventory);
@@ -51,7 +54,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
 
-        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        if (DialogueManager.GetInstance().dialogueIsPlaying || activeWindow == true)
         {
             return;
         }

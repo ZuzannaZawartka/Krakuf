@@ -14,6 +14,7 @@ public class NavMeshController : MonoBehaviour
     private int change_dest = 0;
     public GameObject Npc;
     public Dialogue skrypt;
+    public bool questGiver;
 
     void Start()
     {
@@ -22,16 +23,24 @@ public class NavMeshController : MonoBehaviour
         waypointy = GameObject.FindGameObjectWithTag("Waypointy").transform; //Przypisujemy do waypointy obiekty z danym tagiem 
         change_dest = UnityEngine.Random.Range(0, waypointy.childCount);  // Losujemy po ilu trasach npc ma zmieniæ destynajcê 
         agent.SetDestination(waypointy.GetChild(0).transform.position); // Przypisujemy domyœlny pierwszy cel
+        questGiver = GetComponent<QuestGiver>().isWindowActive;
     }
 
     // Update is called once per frame
     void Update()
     { 
-        if(agent.remainingDistance < 0.5 && !DialogueManager.GetInstance().dialogueIsPlaying)
+        if(DialogueManager.GetInstance().dialogueIsPlaying == true || questGiver == true)
         {
-            agent.SetDestination(waypointy.GetChild(Where()).transform.position); // Jeœli npc doszed³ do celu, wywo³aj funckjê where (co i  gdzie ma npc robiæ)
-            //Debug.Log(agent.destination);
-        }   
+            agent.SetDestination(Npc.transform.position);
+        }
+        else
+        {
+            if (agent.remainingDistance < 0.5 && !DialogueManager.GetInstance().dialogueIsPlaying && questGiver == false)
+            {
+                agent.SetDestination(waypointy.GetChild(Where()).transform.position); // Jeœli npc doszed³ do celu, wywo³aj funckjê where (co i  gdzie ma npc robiæ)
+                                                                                      //Debug.Log(agent.destination);
+            }
+        }
     }
 
     public int Where()

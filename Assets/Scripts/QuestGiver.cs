@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class QuestGiver : MonoBehaviour
-{   //skrypt zadawany na npc który ma dawaæ questa graczowi
+{   //skrypt zadawany na npc ktÃ³ry ma dawaÃ¦ questa graczowi
     public serializableClass quest;
     public PlayerStats player;
 
@@ -15,6 +15,7 @@ public class QuestGiver : MonoBehaviour
     public Text descryptionText;
     public Text expText;
     public Text goldText;
+    public bool isWindowActive = false;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class QuestGiver : MonoBehaviour
     }
 
     public void OpenQuestWindow()
-    {   //Funkcja otwieraj¹ca UI odpowiadaj¹ce za nadanie questu i przupisanie mu odpowiednich wartoœæi
+    {   //Funkcja otwierajÂ¹ca UI odpowiadajÂ¹ce za nadanie questu i przupisanie mu odpowiednich wartoÅ“Ã¦i
         Cursor.lockState = CursorLockMode.None;
         titleText.text = quest.largeQuest[0].title;
         descryptionText.text = quest.largeQuest[0].description;
@@ -33,12 +34,14 @@ public class QuestGiver : MonoBehaviour
         rejectButton.onClick.RemoveAllListeners();
         rejectButton.onClick.AddListener(CloserQuestWindow);
         questWindow.SetActive(true);
-        Debug.Log(player.quests.Count);
+        isWindowActive = true;
+
     }
     public void CloserQuestWindow()
-    {   //Zamykanie okna questów
+    {   //Zamykanie okna questÃ³w
         Cursor.lockState = CursorLockMode.Locked;
         questWindow.SetActive(false);
+        isWindowActive = false;
     }
     public void AcceptQuest() 
     {   
