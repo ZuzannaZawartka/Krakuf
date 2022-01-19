@@ -25,7 +25,7 @@ public class PlayerStats : MonoBehaviour
 
     public GameObject deadScrean;
 
-    public Quest quest;
+    public List<serializableClass> quests = new List<serializableClass>();
     public PlayerControl playerControl;
     public PlayerHUD hud;
     private void Start()
@@ -40,20 +40,6 @@ public class PlayerStats : MonoBehaviour
     private void Update()
     {
         // Inputy tylko po to ¿eby sprawdzaæ dzia³anie :)
-        if (Input.GetKeyDown(KeyCode.T))
-        {   //sprawdzenie czy quest o typie kill dzia³a
-            if (quest.isActive && quest.goal.goalType == GoalType.kill ) 
-            {
-                quest.goal.currScore++;
-                if (quest.goal.currScore >= quest.goal.reqScore)
-                {
-                    quest.isActive = false;
-                    GetExp(quest.exp);
-                    GetGold(quest.gold);
-                    quest.Compleated();
-                }
-            }
-        }
 
         if (Input.GetKeyDown(KeyCode.Q)) 
         {
@@ -97,15 +83,21 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("Game Over!");
         Cursor.lockState = CursorLockMode.None;
         deadScrean.SetActive(true);
+        transform.position = new Vector3(0, 3, 0);
         isDead = true;
     }
 
     public void Restart() 
     {
+        isDead = false;
+        Cursor.lockState = CursorLockMode.Locked;
         deadScrean.SetActive(false);
         SetVariables();
-        Cursor.lockState = CursorLockMode.Locked;
-        gameObject.transform.position = new Vector3(0, 0, 0);
+        CheckExp();
+        CheckHP();
+        CheckStamina();
+        CheckMana();
+
     }
 
     public void CheckStamina()
@@ -244,4 +236,10 @@ public class PlayerStats : MonoBehaviour
 
         gold = 10;
     }
+}
+
+[System.Serializable]
+public class serializableClass
+{
+    public List<Quest> largeQuest;
 }

@@ -44,16 +44,7 @@ public class PlayerControl : MonoBehaviour
         if (iWorld!= null)
         {   //dodawanie ich do invertory
             inventory.AddItem(iWorld.GetItem());
-            if (playerStats.quest.isActive)
-            {   //jesli quest jest aktywny dodawnie postêpów i czy jest ukonczony
-                playerStats.quest.goal.CollectItems(iWorld.GetItem().itemType.ToString(), iWorld.GetItem().amount);
-                if (playerStats.quest.goal.IsComplited())
-                {   //jesli zbierzemy odpowiednia ilosc itemow koczmy questa, dostajemy exp, golda i oznaczamy jako nieaktywnego
-                    playerStats.GetExp(playerStats.quest.exp);
-                    playerStats.GetGold(playerStats.quest.gold);
-                    playerStats.quest.Compleated();
-                }
-            }
+            QuestProgress(iWorld.GetItem().itemType.ToString(), iWorld.GetItem().amount);
             iWorld.DestroySelf();
             //ui_inventory.RefreshInventory();
         }
@@ -110,5 +101,37 @@ public class PlayerControl : MonoBehaviour
             playerHud.OpenInventory();
         }
 
+    }
+
+    void QuestProgress(string itemtype, int amount) 
+    {
+        if (playerStats.quests.Count > 0)
+        {
+            for (int i = 0; i < playerStats.quests.Count; i++)
+            {
+                for (int j = 0; j < playerStats.quests[i].largeQuest.Count; j++)
+                {
+                    if (playerStats.quests[i].largeQuest[j].isActive)
+                    {
+                        playerStats.quests[i].largeQuest[j].goal.CollectItems(itemtype, amount);
+                        if (playerStats.quests[i].largeQuest[j].goal.IsComplited())
+                        {
+                            playerStats.GetExp(playerStats.quests[i].largeQuest[j].exp);
+                            playerStats.GetGold(playerStats.quests[i].largeQuest[j].gold);
+                            playerStats.quests[i].largeQuest[j].Compleated();
+
+                            if (j == playerStats.quests[i].largeQuest.Count - 1)
+                                playerStats.quests.Remove(playerStats.quests[i]);
+                            else
+                                playerStats.quests[i].largeQuest[j + 1].isActive = true;
+
+                            if (i >= 0 && playerStats.quests.Count > 0)
+                                i--;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

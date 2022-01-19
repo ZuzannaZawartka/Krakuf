@@ -27,17 +27,22 @@ public class PlayerHUD : MonoBehaviour
 
     public GameObject activeQuestWindow;
     public Button giveUpButton;
+    public Button previousQuest;
+    public Button nextQuest;
     public Text titleText;
     public Text descryptionText;
     public Text expText;
     public Text goldText;
     public GameObject score;
     public GameObject rewards;
+    public GameObject arrows;
     public Text currScore;
     public Text reqScore;
 
     [SerializeField] GameObject uiInventory;
     public bool openedInventory;
+
+    public int visibleQuestIndex = 0;
     public void UpdatePlayerClass(string playerclass)
     {   //wyœwietlanie klasy gracza 
         playerClassText.text = playerclass;
@@ -102,24 +107,39 @@ public class PlayerHUD : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         activeQuestWindow.SetActive(true);
-        if (!player.quest.isActive)
+        if (player.quests.Count == 0)
         {
-            titleText.text = "Brak zadnia";
-            descryptionText.text = "Nie masz aktualnie ¿adnej misji od wykonania";
+            titleText.text = "Brak zadań";
+            descryptionText.text = "Nie masz aktualnie żadnych misji od wykonania";
             score.SetActive(false);
             rewards.SetActive(false);
+            arrows.SetActive(false);
+            
         }
-        else if (player.quest.isActive) 
+        else 
         {
-            titleText.text = player.quest.title;
-            descryptionText.text = player.quest.description;
-            score.SetActive(true);
-            rewards.SetActive(true);
-            goldText.text = player.quest.gold.ToString();
-            expText.text = player.quest.exp.ToString();
-            reqScore.text = player.quest.goal.reqScore.ToString();
-            currScore.text = player.quest.goal.currScore.ToString();
 
+            for (int i = 0; i < player.quests[visibleQuestIndex].largeQuest.Count; i++)
+            {
+                Debug.Log(titleText.text = player.quests[visibleQuestIndex].largeQuest[i].description);
+                if (player.quests[visibleQuestIndex].largeQuest[i].isActive)
+                {
+                    titleText.text = player.quests[visibleQuestIndex].largeQuest[i].title;
+                    descryptionText.text = player.quests[visibleQuestIndex].largeQuest[i].description;
+                    score.SetActive(true);
+                    rewards.SetActive(true);
+                    if (player.quests.Count == 1)
+                        arrows.SetActive(false);
+                    else
+                        arrows.SetActive(true);
+
+                    goldText.text = player.quests[visibleQuestIndex].largeQuest[i].gold.ToString();
+                    expText.text = player.quests[visibleQuestIndex].largeQuest[i].exp.ToString();
+                    reqScore.text = player.quests[visibleQuestIndex].largeQuest[i].goal.reqScore.ToString();
+                    currScore.text = player.quests[visibleQuestIndex].largeQuest[i].goal.currScore.ToString();
+                    break;
+                }
+            }
         }
 
     }
@@ -130,7 +150,26 @@ public class PlayerHUD : MonoBehaviour
     }
     public void GiveUPQuest()
     {
-        player.quest.isActive = false;
+        player.quests.Remove(player.quests[visibleQuestIndex]);
+        if (visibleQuestIndex != 0)
+            visibleQuestIndex--;
+        OpenActiveQuest();
+    }
+    public void NextQuest() 
+    {
+        if (visibleQuestIndex == player.quests.Count - 1)
+            visibleQuestIndex = 0;
+        else
+            visibleQuestIndex++;
+        OpenActiveQuest();
+    }
+
+    public void PreviousQuest()
+    {
+        if (visibleQuestIndex == 0)
+            visibleQuestIndex = player.quests.Count - 1;
+        else
+            visibleQuestIndex--;
         OpenActiveQuest();
     }
 }

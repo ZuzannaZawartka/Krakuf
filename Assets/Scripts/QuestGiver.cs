@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class QuestGiver : MonoBehaviour
-{   //skrypt zadawany na npc który ma dawaæ questa graczowi
-    public Quest quest;
+{   //skrypt zadawany na npc ktÃ³ry ma dawaÃ¦ questa graczowi
+    public serializableClass quest;
     public PlayerStats player;
 
     public GameObject questWindow;
@@ -19,34 +19,55 @@ public class QuestGiver : MonoBehaviour
 
     private void Start()
     {
-        acceptButton = acceptButton.GetComponent<Button>();
-        rejectButton = rejectButton.GetComponent<Button>();
+
     }
 
     public void OpenQuestWindow()
-    {   //Funkcja otwieraj¹ca UI odpowiadaj¹ce za nadanie questu i przupisanie mu odpowiednich wartoœæi
+    {   //Funkcja otwierajÂ¹ca UI odpowiadajÂ¹ce za nadanie questu i przupisanie mu odpowiednich wartoÅ“Ã¦i
         Cursor.lockState = CursorLockMode.None;
-        titleText.text = quest.title;
-        descryptionText.text = quest.description;
-        expText.text = quest.exp.ToString();
-        goldText.text = quest.gold.ToString();
+        titleText.text = quest.largeQuest[0].title;
+        descryptionText.text = quest.largeQuest[0].description;
+        expText.text = quest.largeQuest[0].exp.ToString();
+        goldText.text = quest.largeQuest[0].gold.ToString();
         acceptButton.onClick.RemoveAllListeners();
         acceptButton.onClick.AddListener(AcceptQuest);
         rejectButton.onClick.RemoveAllListeners();
         rejectButton.onClick.AddListener(CloserQuestWindow);
         questWindow.SetActive(true);
         isWindowActive = true;
+
     }
     public void CloserQuestWindow()
-    {   //Zamykanie okna questów
+    {   //Zamykanie okna questÃ³w
         Cursor.lockState = CursorLockMode.Locked;
         questWindow.SetActive(false);
         isWindowActive = false;
     }
     public void AcceptQuest() 
-    {   //Akceptacja questa, przypisanie go do gracza i zamkniêcie okna
-        quest.isActive = true;
-        player.quest = quest;
-        CloserQuestWindow(); 
+    {   
+        bool cantake = true;
+
+        if (player.quests.Count > 0)
+            for (int i = 0; i < player.quests.Count; i++)
+            {
+                if(player.quests[i].largeQuest[0].title == quest.largeQuest[0].title)
+                    cantake = false;
+            }
+        else
+            cantake = true;
+
+        if (cantake)
+        {
+            quest.largeQuest[0].isActive = true;
+            player.quests.Add(quest);
+            CloserQuestWindow();
+        }
+        else 
+        {
+            Debug.Log("masz juz tego questa");
+            CloserQuestWindow();
+        }
+
     }
 }
+
