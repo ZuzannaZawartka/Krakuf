@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class QuestGiver : MonoBehaviour
 {   //skrypt zadawany na npc który ma dawaæ questa graczowi
-    public Quest quest;
+    public serializableClass quest;
     public PlayerStats player;
 
     public GameObject questWindow;
@@ -18,22 +18,22 @@ public class QuestGiver : MonoBehaviour
 
     private void Start()
     {
-        acceptButton = acceptButton.GetComponent<Button>();
-        rejectButton = rejectButton.GetComponent<Button>();
+
     }
 
     public void OpenQuestWindow()
     {   //Funkcja otwieraj¹ca UI odpowiadaj¹ce za nadanie questu i przupisanie mu odpowiednich wartoœæi
         Cursor.lockState = CursorLockMode.None;
-        titleText.text = quest.title;
-        descryptionText.text = quest.description;
-        expText.text = quest.exp.ToString();
-        goldText.text = quest.gold.ToString();
+        titleText.text = quest.largeQuest[0].title;
+        descryptionText.text = quest.largeQuest[0].description;
+        expText.text = quest.largeQuest[0].exp.ToString();
+        goldText.text = quest.largeQuest[0].gold.ToString();
         acceptButton.onClick.RemoveAllListeners();
         acceptButton.onClick.AddListener(AcceptQuest);
         rejectButton.onClick.RemoveAllListeners();
         rejectButton.onClick.AddListener(CloserQuestWindow);
         questWindow.SetActive(true);
+        Debug.Log(player.quests.Count);
     }
     public void CloserQuestWindow()
     {   //Zamykanie okna questów
@@ -47,7 +47,7 @@ public class QuestGiver : MonoBehaviour
         if (player.quests.Count > 0)
             for (int i = 0; i < player.quests.Count; i++)
             {
-                if(player.quests[i].title == quest.title)
+                if(player.quests[i].largeQuest[0].title == quest.largeQuest[0].title)
                     cantake = false;
             }
         else
@@ -55,7 +55,7 @@ public class QuestGiver : MonoBehaviour
 
         if (cantake)
         {
-            quest.isActive = true;
+            quest.largeQuest[0].isActive = true;
             player.quests.Add(quest);
             CloserQuestWindow();
         }
@@ -67,3 +67,4 @@ public class QuestGiver : MonoBehaviour
 
     }
 }
+

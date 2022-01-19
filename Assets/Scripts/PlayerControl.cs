@@ -41,22 +41,7 @@ public class PlayerControl : MonoBehaviour
         if (iWorld!= null)
         {   //dodawanie ich do invertory
             inventory.AddItem(iWorld.GetItem());
-            if (playerStats.quests.Count >0)
-            {   //jesli lista questow nie jest pusta 
-                for (int i = 0; i < playerStats.quests.Count; i++)
-                {   //wywolywanie funkcji ospowiadajacej za postep w zbiraniu przedmiotów (ona sama sprawdza czy typ questu jest odpowiedni)
-                    playerStats.quests[i].goal.CollectItems(iWorld.GetItem().itemType.ToString(), iWorld.GetItem().amount);
-                    if (playerStats.quests[i].goal.IsComplited())
-                    {   //jesli quest wykonany 
-                        playerStats.GetExp(playerStats.quests[i].exp);
-                        playerStats.GetGold(playerStats.quests[i].gold);
-                        playerStats.quests[i].Compleated();
-                        playerStats.quests.Remove(playerStats.quests[i]);
-                        if (i >= 0 && playerStats.quests.Count > 0) // poniewaz po usuniêciu czegos z listy nastepuje przesuniêcie aby zape³niæ usuniêty index
-                            i--;
-                    }
-                }
-            }
+            QuestProgress(iWorld.GetItem().itemType.ToString(), iWorld.GetItem().amount);
             iWorld.DestroySelf();
             //ui_inventory.RefreshInventory();
         }
@@ -113,5 +98,37 @@ public class PlayerControl : MonoBehaviour
             playerHud.OpenInventory();
         }
 
+    }
+
+    void QuestProgress(string itemtype, int amount) 
+    {
+        if (playerStats.quests.Count > 0)
+        {
+            for (int i = 0; i < playerStats.quests.Count; i++)
+            {
+                for (int j = 0; j < playerStats.quests[i].largeQuest.Count; j++)
+                {
+                    if (playerStats.quests[i].largeQuest[j].isActive)
+                    {
+                        playerStats.quests[i].largeQuest[j].goal.CollectItems(itemtype, amount);
+                        if (playerStats.quests[i].largeQuest[j].goal.IsComplited())
+                        {
+                            playerStats.GetExp(playerStats.quests[i].largeQuest[j].exp);
+                            playerStats.GetGold(playerStats.quests[i].largeQuest[j].gold);
+                            playerStats.quests[i].largeQuest[j].Compleated();
+
+                            if (j == playerStats.quests[i].largeQuest.Count - 1)
+                                playerStats.quests.Remove(playerStats.quests[i]);
+                            else
+                                playerStats.quests[i].largeQuest[j + 1].isActive = true;
+
+                            if (i >= 0 && playerStats.quests.Count > 0)
+                                i--;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

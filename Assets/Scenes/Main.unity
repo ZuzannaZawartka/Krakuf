@@ -2211,18 +2211,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest:
-    isActive: 1
-    questId: 0
-    title: zbierz coinsy
-    description: zbierz 4 coinsy
-    exp: 300
-    gold: 100
-    goal:
-      goalType: 1
-      currScore: 0
-      reqScore: 4
-      id: 0
-      itemType: Coin
+    largeQuest:
+    - isActive: 1
+      questId: 1
+      title: Pierwszy LargeQuest
+      description: 12
+      exp: 0
+      gold: 0
+      goal:
+        goalType: 0
+        currScore: 0
+        reqScore: 2
+        id: 0
+        itemType: 
+    - isActive: 0
+      questId: 1
+      title: Pierwszy LargeQuest
+      description: 23
+      exp: 0
+      gold: 0
+      goal:
+        goalType: 0
+        currScore: 0
+        reqScore: 0
+        id: 0
+        itemType: 
   player: {fileID: 610401908}
   questWindow: {fileID: 496228220}
   acceptButton: {fileID: 962587260}
@@ -2863,18 +2876,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest:
-    isActive: 1
-    questId: 0
-    title: idz zabij 5 kibili
-    description: michal idzie sie zabic
-    exp: 20
-    gold: 30
-    goal:
-      goalType: 0
-      currScore: 0
-      reqScore: 4
-      id: 0
-      itemType: 
+    largeQuest:
+    - isActive: 1
+      questId: 2
+      title: Drugi LargeQuest
+      description: 23
+      exp: 23
+      gold: 23
+      goal:
+        goalType: 1
+        currScore: 0
+        reqScore: 4
+        id: 0
+        itemType: Coin
+    - isActive: 0
+      questId: 2
+      title: Drugi LargeQuest
+      description: 23
+      exp: 23
+      gold: 23
+      goal:
+        goalType: 0
+        currScore: 0
+        reqScore: 2
+        id: 0
+        itemType: 
   player: {fileID: 610401908}
   questWindow: {fileID: 496228220}
   acceptButton: {fileID: 962587260}
@@ -3511,7 +3537,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: quests.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests2.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: quest.goal.goalType
@@ -3524,6 +3554,10 @@ PrefabInstance:
     - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: quest.goal.reqScore
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: nestedList.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: quests.Array.data[0].exp
@@ -3588,6 +3622,82 @@ PrefabInstance:
     - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: quests.Array.data[1].goal.reqScore
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: nestedList.Array.data[0].largeQuest.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: nestedList.Array.data[0].sampleList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[0].exp
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[1].exp
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[0].gold
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[1].gold
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[0].title
+      value: Pierwszy LargeQuest
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[1].title
+      value: Pierwszy LargeQuest
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[0].questId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[1].questId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[0].isActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[1].isActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[0].description
+      value: "zabij 4 typ\xF3w "
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[1].description
+      value: "Zabi\u0142e\u015B 4 typ\xF3w ,teraz zbierz 4 coiny"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[0].goal.reqScore
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[1].goal.goalType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[1].goal.itemType
+      value: Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355643455875560995, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
+      propertyPath: quests.Array.data[0].largeQuest.Array.data[1].goal.reqScore
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1355643455875560997, guid: 57280a66cdfd805469704314be3ad4c8, type: 3}
       propertyPath: m_RootOrder

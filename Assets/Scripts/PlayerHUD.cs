@@ -118,20 +118,28 @@ public class PlayerHUD : MonoBehaviour
         }
         else 
         {
-            titleText.text = player.quests[visibleQuestIndex].title;
-            descryptionText.text = player.quests[visibleQuestIndex].description;
-            score.SetActive(true);
-            rewards.SetActive(true);
-            if (player.quests.Count == 1)
-                arrows.SetActive(false);
-            else
-                arrows.SetActive(true);
 
-            goldText.text = player.quests[visibleQuestIndex].gold.ToString();
-            expText.text = player.quests[visibleQuestIndex].exp.ToString();
-            reqScore.text = player.quests[visibleQuestIndex].goal.reqScore.ToString();
-            currScore.text = player.quests[visibleQuestIndex].goal.currScore.ToString();
+            for (int i = 0; i < player.quests[visibleQuestIndex].largeQuest.Count; i++)
+            {
+                Debug.Log(titleText.text = player.quests[visibleQuestIndex].largeQuest[i].description);
+                if (player.quests[visibleQuestIndex].largeQuest[i].isActive)
+                {
+                    titleText.text = player.quests[visibleQuestIndex].largeQuest[i].title;
+                    descryptionText.text = player.quests[visibleQuestIndex].largeQuest[i].description;
+                    score.SetActive(true);
+                    rewards.SetActive(true);
+                    if (player.quests.Count == 1)
+                        arrows.SetActive(false);
+                    else
+                        arrows.SetActive(true);
 
+                    goldText.text = player.quests[visibleQuestIndex].largeQuest[i].gold.ToString();
+                    expText.text = player.quests[visibleQuestIndex].largeQuest[i].exp.ToString();
+                    reqScore.text = player.quests[visibleQuestIndex].largeQuest[i].goal.reqScore.ToString();
+                    currScore.text = player.quests[visibleQuestIndex].largeQuest[i].goal.currScore.ToString();
+                    break;
+                }
+            }
         }
 
     }

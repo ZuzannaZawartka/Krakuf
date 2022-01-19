@@ -38,5 +38,5 @@ public enum GoalType
 {   //typy questów
     kill,
     collect,
-    talk
+    talk,
 }

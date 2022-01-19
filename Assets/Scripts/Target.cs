@@ -33,26 +33,40 @@ public class Target : MonoBehaviour
     void Die()
     {
         playerStats.GetExp(gainExp);
+        QuestProgress();
+        Destroy(gameObject);
+    }
 
+    void QuestProgress() 
+    {
         if (playerStats.quests.Count > 0)
         {
-            for (int i= 0; i< playerStats.quests.Count; i++ ) 
+            for (int i = 0; i < playerStats.quests.Count; i++)
             {
-                playerStats.quests[i].goal.KillEnemy(id);
-                if (playerStats.quests[i].goal.IsComplited())
+                for (int j = 0; j < playerStats.quests[i].largeQuest.Count; j++)
                 {
-                    playerStats.GetExp(playerStats.quests[i].exp);
-                    playerStats.GetGold(playerStats.quests[i].gold);
-                    playerStats.quests[i].Compleated();
-                    playerStats.quests.Remove(playerStats.quests[i]);
-                    if (i >= 0 && playerStats.quests.Count>0)  // poniewaz po usuniêciu czegos z listy nastepuje przesuniêcie aby zape³niæ usuniêty index
-                        i--;
+                    if (playerStats.quests[i].largeQuest[j].isActive)
+                    {
+                        playerStats.quests[i].largeQuest[j].goal.KillEnemy(id);
+                        if (playerStats.quests[i].largeQuest[j].goal.IsComplited())
+                        {
+                            playerStats.GetExp(playerStats.quests[i].largeQuest[j].exp);
+                            playerStats.GetGold(playerStats.quests[i].largeQuest[j].gold);
+                            playerStats.quests[i].largeQuest[j].Compleated();
 
+                            if (j == playerStats.quests[i].largeQuest.Count - 1)
+                                playerStats.quests.Remove(playerStats.quests[i]);
+                            else
+                                playerStats.quests[i].largeQuest[j + 1].isActive = true;
+
+                            if (i >= 0 && playerStats.quests.Count > 0)
+                                i--;
+                        }
+                        break;
+                    }
                 }
             }
         }
-
-        Destroy(gameObject);
     }
 }
 

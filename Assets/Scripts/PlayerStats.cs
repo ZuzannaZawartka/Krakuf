@@ -25,7 +25,7 @@ public class PlayerStats : MonoBehaviour
 
     public GameObject deadScrean;
 
-    public List<Quest> quests;
+    public List<serializableClass> quests = new List<serializableClass>();
     public PlayerControl playerControl;
     public PlayerHUD hud;
     private void Start()
@@ -40,20 +40,6 @@ public class PlayerStats : MonoBehaviour
     private void Update()
     {
         // Inputy tylko po to ¿eby sprawdzaæ dzia³anie :)
-        if (Input.GetKeyDown(KeyCode.T))
-        {   //sprawdzenie czy quest o typie kill dzia³a
-            if (quests[1].isActive && quests[1].goal.goalType == GoalType.kill ) 
-            {
-                quests[1].goal.currScore++;
-                if (quests[1].goal.currScore >= quests[1].goal.reqScore)
-                {
-                    quests[1].isActive = false;
-                    GetExp(quests[1].exp);
-                    GetGold(quests[1].gold);
-                    quests[1].Compleated();
-                }
-            }
-        }
 
         if (Input.GetKeyDown(KeyCode.Q)) 
         {
@@ -250,4 +236,10 @@ public class PlayerStats : MonoBehaviour
 
         gold = 10;
     }
+}
+
+[System.Serializable]
+public class serializableClass
+{
+    public List<Quest> largeQuest;
 }
