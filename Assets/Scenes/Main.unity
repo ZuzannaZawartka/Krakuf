@@ -2544,7 +2544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b7c026da0f25048b0fb15167334377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-
   dialoguePanel: {fileID: 627802580}
   dialogueText: {fileID: 1712020570}
   choices:
